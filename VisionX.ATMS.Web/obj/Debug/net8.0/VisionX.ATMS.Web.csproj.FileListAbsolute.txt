@@ -202,3 +202,4 @@ D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.ATMS.Web\obj\Debug\net8.0\scopedcss\
 D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.ATMS.Web\obj\Debug\net8.0\VisionX.ATMS.Web.csproj.CopyComplete
 D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.ATMS.Web\obj\Debug\net8.0\VisionX.ATMS.Web.genruntimeconfig.cache
 D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.ATMS.Web\obj\Debug\net8.0\ref\VisionX.ATMS.Web.dll
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.ATMS.Web\bin\Debug\net8.0\Config.xml

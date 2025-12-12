@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VisionX.ATMS.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ddbeb352b8b34b08c3cdcdacd27759a257f567ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("VisionX.ATMS.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VisionX.ATMS.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "WNqPUlwKci0fjSlL/yE/2zkZ41vEVBza7NxP22vbYqM=",
+  "Hash": "rlJ+6Q4egh1IWLqlOBP85NOcGHcGllVgPpDk5SXWLrc=",
   "Source": "VisionX.ATMS.Web",
   "BasePath": "_content/VisionX.ATMS.Web",
   "Mode": "Default",
@@ -300,6 +300,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\images\\icon.ico",
+      "SourceId": "VisionX.ATMS.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\",
+      "BasePath": "_content/VisionX.ATMS.Web",
+      "RelativePath": "images/icon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\icon.ico"
     },
     {
       "Identity": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\images\\msg1.jpg",

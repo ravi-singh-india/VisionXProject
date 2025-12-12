@@ -1,11 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>  
-<Configs>  
-  <Config>  
-    <DBServer>.</DBServer>  
-    <DBName>VisionXATMS</DBName>  
-    <DBUname>sa</DBUname>  
-    <DBPword>FtYTccleANE=</DBPword>
-    <MaintanLog>0</MaintanLog>
-    <SecurityCode>gWl8mJxX0Pp2+O97AjkxGg==</SecurityCode>
-  </Config>     
-</Configs> 
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <Setting key="Example" value="Value" />
+</Config>

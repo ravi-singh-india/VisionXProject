@@ -57,6 +57,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\images\\icon.ico",
+      "PackagePath": "staticwebassets\\images\\icon.ico"
+    },
+    {
       "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\images\\msg1.jpg",
       "PackagePath": "staticwebassets\\images\\msg1.jpg"
     },
