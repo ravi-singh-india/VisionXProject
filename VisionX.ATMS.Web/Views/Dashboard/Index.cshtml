@@ -1,0 +1,894 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "ATMS Dashboard";
+}
+
+<div class="container-fluid dashboard-container">
+    <!-- First Row - Weather, Alarm, ECB -->
+    <div class="row g-4">
+        <!-- Weather Summary -->
+        <div class="col-md-4">
+            <div class="weather-card" id="weatherCard">
+                <div class="weather-header">
+                    <h6>WEATHER SUMMARY</h6>
+                    <i class="fa-solid fa-minus minimize-icon" onclick="toggleCard('weatherCard')"></i>
+                </div>
+
+                <div class="weather-main">
+                    <i class="fa-solid fa-cloud-sun weather-icon"></i>
+                    <div class="temp-section">
+                        <h2>38.1°C</h2>
+                        <p>3:46 PM 03/06/2025</p>
+                    </div>
+                </div>
+
+                <div class="weather-details card-body-content">
+                    <div class="row">
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-wind"></i> Wind: <strong>South/SouthWest</strong></p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-droplet"></i> Rain: <strong>1.52 mm</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-gauge-high"></i> Wind Speed: <strong>6.8 km/h</strong></p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-eye"></i> Visibility: <strong>6000 m</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-temperature-three-quarters"></i> Air Temp: <strong>38.1°C</strong></p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-water"></i> Humidity: <strong>45%</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="weather-footer card-body-content">
+                    <p><span class="device-label">Device</span> ID: <strong>WIS-101</strong> / NAME: <strong>WIS-101</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alarm Summary -->
+        <div class="col-md-4">
+            <div class="weather-card" id="alarmCard">
+                <div class="weather-header">
+                    <h6>ALARM SUMMARY</h6>
+                    <i class="fa-solid fa-minus minimize-icon" onclick="toggleCard('alarmCard')"></i>
+                </div>
+                <div class="weather-main">
+                    <i class="fa-solid fa-bell alarm-icon"></i>
+                    <div class="temp-section">
+                        <h2>261</h2>
+                        <p>Total Alarm</p>
+                    </div>
+                </div>
+                <div class="weather-details card-body-content">
+                    <div class="row">
+                        <div class="col-12">
+                            <p><i class="fa-solid fa-right-left"></i> Wrong Way Detection: <strong>242</strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><i class="fa-solid fa-car"></i> Stalled Vehicle Detection: <strong>19</strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><i class="fa-solid fa-traffic-light"></i> Congested Traffic: <strong>0</strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><i class="fa-solid fa-gauge-simple"></i> Slow Moving Traffic: <strong>0</strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><i class="fa-solid fa-car-burst"></i> Accident Detection: <strong>0</strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><i class="fa-solid fa-person"></i> Human Detection: <strong>0</strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><i class="fa-solid fa-paw"></i> Animal Detection: <strong>0</strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><i class="fa-solid fa-cloud"></i> Fog Detection: <strong>0</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ECB Management -->
+        <div class="col-md-4">
+            <div class="weather-card" id="ecbCard">
+                <div class="weather-header">
+                    <h6>ECB MANAGEMENT</h6>
+                    <i class="fa-solid fa-minus minimize-icon" onclick="toggleCard('ecbCard')"></i>
+                </div>
+                <div class="weather-main">
+                    <i class="fa-solid fa-phone-volume ecb-icon"></i>
+                    <div class="temp-section">
+                        <h2>40</h2>
+                        <p>Total Calls</p>
+                    </div>
+                </div>
+                <div class="weather-details card-body-content">
+                    <div class="row">
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-check-circle"></i> Completed: <strong>32</strong></p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-phone-slash"></i> Missed: <strong>8</strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-clock"></i> Avg Duration: <strong>2:35 min</strong></p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-phone-volume"></i> Active Now: <strong>3</strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><i class="fa-solid fa-chart-line"></i> Success Rate: <strong>80%</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather-footer card-body-content">
+                    <p><span class="device-label">Status</span> System: <strong>Active</strong> / Last Update: <strong>5 mins ago</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ATCC Summary -->
+       @*  <div class="col-md-3">
+            <div class="weather-card" id="atccCard">
+                <div class="weather-header">
+                    <h6>ATCC SUMMARY</h6>
+                    <i class="fa-solid fa-expand expand-icon" title="Expand View"></i>
+                    <i class="fa-solid fa-minus minimize-icon" onclick="toggleCard('atccCard')"></i>
+                </div>
+                <div class="weather-main">
+                    <i class="fa-solid fa-car atcc-icon"></i>
+                    <div class="temp-section">
+                        <h2>12111</h2>
+                        <p>Total Traffic</p>
+                    </div>
+                </div>
+                <div class="weather-details card-body-content">
+                    <div class="atcc-grid">
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-tractor"></i>
+                            <span class="atcc-label">Tractor</span>
+                            <span class="atcc-value">15</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-truck"></i>
+                            <span class="atcc-label">Truck</span>
+                            <span class="atcc-value">240</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-car-side"></i>
+                            <span class="atcc-label">Car/Jeep</span>
+                            <span class="atcc-value">9042</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-van-shuttle"></i>
+                            <span class="atcc-label">MAV</span>
+                            <span class="atcc-value">1718</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-bus"></i>
+                            <span class="atcc-label">Bus</span>
+                            <span class="atcc-value">2448</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-motorcycle"></i>
+                            <span class="atcc-label">Bike</span>
+                            <span class="atcc-value">0</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-truck-pickup"></i>
+                            <span class="atcc-label">Mini LCV</span>
+                            <span class="atcc-value">0</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-car"></i>
+                            <span class="atcc-label">Auto</span>
+                            <span class="atcc-value">0</span>
+                        </div>
+                        <div class="atcc-item atcc-item-full">
+                            <i class="fa-solid fa-truck-moving"></i>
+                            <span class="atcc-label">LCV</span>
+                            <span class="atcc-value">1096</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather-footer card-body-content">
+                    <p><span class="device-label">Device</span> ID: <strong>TP1_RHS</strong> / NAME: <strong>TP1_RHS</strong></p>
+                </div>
+            </div>
+        </div> *@
+    </div>
+
+    <!-- Second Row - Map and Server Status -->
+    <div class="row g-4 mt-3">
+        <!-- ATCC Summary -->
+        <div class="col-md-4">
+            <div class="weather-card" id="atccCard">
+                <div class="weather-header">
+                    <h6>ATCC SUMMARY</h6>
+                    <i class="fa-solid fa-expand expand-icon" title="Expand View"></i>
+                    <i class="fa-solid fa-minus minimize-icon" onclick="toggleCard('atccCard')"></i>
+                </div>
+                <div class="weather-main">
+                    <i class="fa-solid fa-car atcc-icon"></i>
+                    <div class="temp-section">
+                        <h2>12111</h2>
+                        <p>Total Traffic</p>
+                    </div>
+                </div>
+                <div class="weather-details card-body-content">
+                    <div class="atcc-grid">
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-tractor"></i>
+                            <span class="atcc-label">Tractor</span>
+                            <span class="atcc-value">15</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-truck"></i>
+                            <span class="atcc-label">Truck</span>
+                            <span class="atcc-value">240</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-car-side"></i>
+                            <span class="atcc-label">Car/Jeep</span>
+                            <span class="atcc-value">9042</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-van-shuttle"></i>
+                            <span class="atcc-label">MAV</span>
+                            <span class="atcc-value">1718</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-bus"></i>
+                            <span class="atcc-label">Bus</span>
+                            <span class="atcc-value">2448</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-motorcycle"></i>
+                            <span class="atcc-label">Bike</span>
+                            <span class="atcc-value">0</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-truck-pickup"></i>
+                            <span class="atcc-label">Mini LCV</span>
+                            <span class="atcc-value">0</span>
+                        </div>
+                        <div class="atcc-item">
+                            <i class="fa-solid fa-car"></i>
+                            <span class="atcc-label">Auto</span>
+                            <span class="atcc-value">0</span>
+                        </div>
+                        <div class="atcc-item atcc-item-full">
+                            <i class="fa-solid fa-truck-moving"></i>
+                            <span class="atcc-label">LCV</span>
+                            <span class="atcc-value">1096</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather-footer card-body-content">
+                    <p><span class="device-label">Device</span> ID: <strong>TP1_RHS</strong> / NAME: <strong>TP1_RHS</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Device Map -->
+        <div class="col-md-8">
+            <div class="map-card" id="mapCard">
+                <div class="weather-header">
+                    <h6>DEVICE LOCATIONS</h6>
+                    <i class="fa-solid fa-minus minimize-icon" onclick="toggleCard('mapCard')"></i>
+                </div>
+                <div class="map-container card-body-content">
+                    <div id="deviceMap" style="width: 100%; height: 400px; border-radius: 8px;"></div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <!-- Third Row - Variable Message Sign -->
+    <div class="row g-4 mt-3">
+        <!-- VMS Map -->
+        <div class="col-md-8">
+            <div class="vms-card" id="vmsCard">
+                <div class="weather-header">
+                    <h6>VARIABLE MESSAGE SIGN (VMS)</h6>
+                    <div class="vms-controls">
+                        <button class="vms-nav-btn" onclick="previousVMS()"><i class="fa-solid fa-chevron-left"></i></button>
+                        <span id="vmsCounter">1 / 5</span>
+                        <button class="vms-nav-btn" onclick="nextVMS()"><i class="fa-solid fa-chevron-right"></i></button>
+                        <i class="fa-solid fa-minus minimize-icon" onclick="toggleCard('vmsCard')"></i>
+                    </div>
+                </div>
+                <div class="vms-content card-body-content">
+                    <div class="vms-image-container">
+                        <img id="vmsImage" src="~/images/vms-display-1.jpg" alt="VMS Display" class="vms-image">
+                        <div class="vms-status-badge" id="vmsStatusBadge">
+                            <i class="fa-solid fa-circle-check"></i> ACTIVE
+                        </div>
+                    </div>
+                    <div class="vms-info-grid">
+                        <div class="vms-info-item">
+                            <span class="vms-label">Device ID</span>
+                            <span class="vms-value" id="vmsDeviceId">214.80 L</span>
+                        </div>
+                        <div class="vms-info-item">
+                            <span class="vms-label">Device Name</span>
+                            <span class="vms-value" id="vmsDeviceName">VMS-214.80-L</span>
+                        </div>
+                        <div class="vms-info-item">
+                            <span class="vms-label">Chainage</span>
+                            <span class="vms-value" id="vmsChainage">214.80 L</span>
+                        </div>
+                        <div class="vms-info-item">
+                            <span class="vms-label">IP Address</span>
+                            <span class="vms-value" id="vmsIpAddress">192.168.161.2</span>
+                        </div>
+                        <div class="vms-info-item">
+                            <span class="vms-label">Location</span>
+                            <span class="vms-value" id="vmsLocation">Kanpur, UP</span>
+                        </div>
+                        <div class="vms-info-item">
+                            <span class="vms-label">Last Updated</span>
+                            <span class="vms-value" id="vmsLastUpdate">2 mins ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Server Status -->
+        <div class="col-md-4">
+            <div class="weather-card" id="serverCard">
+                <div class="weather-header">
+                    <h6>SERVER STATUS (LAST 1 HOUR)</h6>
+                    <i class="fa-solid fa-minus minimize-icon" onclick="toggleCard('serverCard')"></i>
+                </div>
+                <div class="weather-main">
+                    <i class="fa-solid fa-server server-icon"></i>
+                    <div class="temp-section">
+                        <h2>3.21%</h2>
+                        <p>CPU Usage</p>
+                    </div>
+                </div>
+                <div class="weather-details card-body-content">
+                    <div class="row">
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-memory"></i> Memory: <strong>45%</strong></p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-hard-drive"></i> Disk: <strong>62%</strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-microchip"></i> CPU Cores: <strong>8</strong></p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-database"></i> RAM: <strong>16 GB</strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><i class="fa-solid fa-network-wired"></i> Network: <strong>125 Mbps</strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><i class="fa-solid fa-clock"></i> Uptime: <strong>15 days 4 hrs</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather-footer card-body-content">
+                    <p><span class="device-label">Server</span> Status: <strong>Online</strong> / Last Check: <strong>Just now</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fourth Row - TMCS and Alarm Summary Table -->
+    <div class="row g-4 mt-3">
+        <!-- TMCS Video Grid -->
+        <div class="col-md-5">
+            <div class="tmcs-card" id="tmcsCard">
+                <div class="weather-header">
+                    <h6>TMCS</h6>
+                    <i class="fa-solid fa-expand expand-icon" title="Expand View"></i>
+                    <i class="fa-solid fa-minus minimize-icon" onclick="toggleCard('tmcsCard')"></i>
+                </div>
+                <div class="tmcs-content card-body-content">
+                    <div class="tmcs-grid">
+                        <div class="tmcs-video-box">
+                            <div class="video-placeholder">
+                                <img src="~/images/camera-placeholder.jpg" alt="Camera 1" class="camera-feed" style="display: none;" />
+                                <div class="video-unavailable">
+                                    <i class="fa-solid fa-video-slash"></i>
+                                    <p>Video unreachable</p>
+                                </div>
+                            </div>
+                            <div class="video-label">Web RTC Live</div>
+                        </div>
+                        <div class="tmcs-video-box">
+                            <div class="video-placeholder">
+                                <img src="~/images/camera-placeholder.jpg" alt="Camera 2" class="camera-feed" style="display: none;" />
+                                <div class="video-unavailable">
+                                    <i class="fa-solid fa-video-slash"></i>
+                                    <p>Video unreachable</p>
+                                </div>
+                            </div>
+                            <div class="video-label">Web RTC Live</div>
+                        </div>
+                        <div class="tmcs-video-box">
+                            <div class="video-placeholder">
+                                <img src="~/images/camera-placeholder.jpg" alt="Camera 3" class="camera-feed" style="display: none;" />
+                                <div class="video-unavailable">
+                                    <i class="fa-solid fa-video-slash"></i>
+                                    <p>Video unreachable</p>
+                                </div>
+                            </div>
+                            <div class="video-label">Web RTC Live</div>
+                        </div>
+                        <div class="tmcs-video-box">
+                            <div class="video-placeholder">
+                                <img src="~/images/camera-placeholder.jpg" alt="Camera 4" class="camera-feed" style="display: none;" />
+                                <div class="video-unavailable">
+                                    <i class="fa-solid fa-video-slash"></i>
+                                    <p>Video unreachable</p>
+                                </div>
+                            </div>
+                            <div class="video-label">Web RTC Live</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alarm Summary Table -->
+        <div class="col-md-7">
+            <div class="alarm-table-card" id="alarmTableCard">
+                <div class="weather-header">
+                    <h6>ALARM SUMMARY</h6>
+                    <i class="fa-solid fa-minus minimize-icon" onclick="toggleCard('alarmTableCard')"></i>
+                </div>
+                <div class="alarm-table-content card-body-content">
+                    <table class="alarm-table">
+                        <thead>
+                            <tr>
+                                <th>S No</th>
+                                <th>Alarm Summary</th>
+                                <th>Alarm Type</th>
+                                <th>Generation Date</th>
+                                <th>Source</th>
+                                <th>Severity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>192.168.154.35, Destination host unreacha...</td>
+                                <td><i class="fa-solid fa-bell alarm-icon-gray"></i></td>
+                                <td>06/01/2025 08:18:47</td>
+                                <td>CCTV</td>
+                                <td><span class="severity-badge severity-high">High</span></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>192.168.161.88, Destination host unreachab...</td>
+                                <td><i class="fa-solid fa-bell alarm-icon-gray"></i></td>
+                                <td>27/09/2024 06:20:03</td>
+                                <td>VMS</td>
+                                <td><span class="severity-badge severity-high">High</span></td>
+                            </tr>
+                            <tr class="row-highlight">
+                                <td>3</td>
+                                <td>Free up Storage , Disk Usages : 13.33</td>
+                                <td><i class="fa-solid fa-bell alarm-icon-green"></i></td>
+                                <td>17/08/2024 03:15:01</td>
+                                <td>SYSTEM</td>
+                                <td><span class="severity-badge severity-low">Low</span></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>192.168.161.50, Destination host unreachab...</td>
+                                <td><i class="fa-solid fa-bell alarm-icon-green"></i></td>
+                                <td>08/08/2024 05:18:18</td>
+                                <td>VMS</td>
+                                <td><span class="severity-badge severity-high">High</span></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>192.168.161.125, Destination host unreacha...</td>
+                                <td><i class="fa-solid fa-bell alarm-icon-gray"></i></td>
+                                <td>08/08/2024 05:17:48</td>
+                                <td>VMS</td>
+                                <td><span class="severity-badge severity-high">High</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="table-pagination">
+                        <span>Rows per page: 100 <i class="fa-solid fa-caret-down"></i></span>
+                        <span class="page-info">1-5 of 5</span>
+                        <button class="page-nav-btn" disabled><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="page-nav-btn" disabled><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fiveth Row - ATCC Summary Table -->
+    <div class="row g-4 mt-3">      
+
+        <!-- Alarm Summary Table -->
+        <div class="col-md-12">
+            <div class="alarm-table-card" id="alarmTableCard">
+                <div class="weather-header">
+                    <h6>ALARM SUMMARY</h6>
+                    <i class="fa-solid fa-minus minimize-icon" onclick="toggleCard('alarmTableCard')"></i>
+                </div>
+                <div class="alarm-table-content card-body-content">
+                    <table class="alarm-table">
+                        <thead>
+                            <tr>
+                                <th>S No</th>
+                                <th>Alarm Summary</th>
+                                <th>Alarm Type</th>
+                                <th>Generation Date</th>
+                                <th>Source</th>
+                                <th>Severity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>192.168.154.35, Destination host unreacha...</td>
+                                <td><i class="fa-solid fa-bell alarm-icon-gray"></i></td>
+                                <td>06/01/2025 08:18:47</td>
+                                <td>CCTV</td>
+                                <td><span class="severity-badge severity-high">High</span></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>192.168.161.88, Destination host unreachab...</td>
+                                <td><i class="fa-solid fa-bell alarm-icon-gray"></i></td>
+                                <td>27/09/2024 06:20:03</td>
+                                <td>VMS</td>
+                                <td><span class="severity-badge severity-high">High</span></td>
+                            </tr>
+                            <tr class="row-highlight">
+                                <td>3</td>
+                                <td>Free up Storage , Disk Usages : 13.33</td>
+                                <td><i class="fa-solid fa-bell alarm-icon-green"></i></td>
+                                <td>17/08/2024 03:15:01</td>
+                                <td>SYSTEM</td>
+                                <td><span class="severity-badge severity-low">Low</span></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>192.168.161.50, Destination host unreachab...</td>
+                                <td><i class="fa-solid fa-bell alarm-icon-green"></i></td>
+                                <td>08/08/2024 05:18:18</td>
+                                <td>VMS</td>
+                                <td><span class="severity-badge severity-high">High</span></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>192.168.161.125, Destination host unreacha...</td>
+                                <td><i class="fa-solid fa-bell alarm-icon-gray"></i></td>
+                                <td>08/08/2024 05:17:48</td>
+                                <td>VMS</td>
+                                <td><span class="severity-badge severity-high">High</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="table-pagination">
+                        <span>Rows per page: 100 <i class="fa-solid fa-caret-down"></i></span>
+                        <span class="page-info">1-5 of 5</span>
+                        <button class="page-nav-btn" disabled><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="page-nav-btn" disabled><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Toggle Card Function
+    function toggleCard(cardId) {
+        const card = document.getElementById(cardId);
+        const icon = card.querySelector('.minimize-icon');
+        const bodyContent = card.querySelectorAll('.card-body-content');
+
+        bodyContent.forEach(content => {
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-minus');
+                if (cardId !== 'mapCard' && cardId !== 'vmsCard') {
+                    card.style.height = '425px';
+                }
+            } else {
+                content.style.display = 'none';
+                icon.classList.remove('fa-minus');
+                icon.classList.add('fa-plus');
+                card.style.height = 'auto';
+            }
+        });
+    }
+
+    // VMS Navigation
+    let currentVMS = 1;
+    const totalVMS = 5;
+
+    // VMS Data Array
+    const vmsData = [
+        {
+            id: 1,
+            image: '@Url.Content("~/images/msg1.jpg")',
+            deviceId: '214.80 L',
+            deviceName: 'VMS-214.80-L',
+            chainage: '214.80 L',
+            ipAddress: '192.168.161.2',
+            location: 'Kanpur, UP',
+            status: 'ACTIVE',
+            lastUpdate: '2 mins ago'
+        },
+        {
+            id: 2,
+            image: '@Url.Content("~/images/visionx_logo.png")',
+            deviceId: '185.40 R',
+            deviceName: 'VMS-185.40-R',
+            chainage: '185.40 R',
+            ipAddress: '192.168.161.3',
+            location: 'Lucknow, UP',
+            status: 'ACTIVE',
+            lastUpdate: '5 mins ago'
+        },
+        {
+            id: 3,
+            image: '@Url.Content("~/images/msg1.jpg")',
+            deviceId: '320.15 L',
+            deviceName: 'VMS-320.15-L',
+            chainage: '320.15 L',
+            ipAddress: '192.168.161.4',
+            location: 'Agra, UP',
+            status: 'INACTIVE',
+            lastUpdate: '1 hour ago'
+        },
+        {
+            id: 4,
+            image: '@Url.Content("~/images/msg1.jpg")',
+            deviceId: '145.90 R',
+            deviceName: 'VMS-145.90-R',
+            chainage: '145.90 R',
+            ipAddress: '192.168.161.5',
+            location: 'Varanasi, UP',
+            status: 'ACTIVE',
+            lastUpdate: '1 min ago'
+        },
+        {
+            id: 5,
+            image: '@Url.Content("~/images/msg1.jpg")',
+            deviceId: '275.60 L',
+            deviceName: 'VMS-275.60-L',
+            chainage: '275.60 L',
+            ipAddress: '192.168.161.6',
+            location: 'Allahabad, UP',
+            status: 'MAINTENANCE',
+            lastUpdate: '30 mins ago'
+        }
+    ];
+
+    function updateVMSDisplay() {
+        const vms = vmsData[currentVMS - 1];
+
+        // Update image
+        document.getElementById('vmsImage').src = vms.image;
+
+        // Update status badge
+        const statusBadge = document.getElementById('vmsStatusBadge');
+        statusBadge.className = 'vms-status-badge vms-status-' + vms.status.toLowerCase();
+
+        let statusIcon = 'fa-circle-check';
+        if (vms.status === 'INACTIVE') statusIcon = 'fa-circle-xmark';
+        if (vms.status === 'MAINTENANCE') statusIcon = 'fa-wrench';
+
+        statusBadge.innerHTML = `<i class="fa-solid ${statusIcon}"></i> ${vms.status}`;
+
+        // Update device info
+        document.getElementById('vmsDeviceId').textContent = vms.deviceId;
+        document.getElementById('vmsDeviceName').textContent = vms.deviceName;
+        document.getElementById('vmsChainage').textContent = vms.chainage;
+        document.getElementById('vmsIpAddress').textContent = vms.ipAddress;
+        document.getElementById('vmsLocation').textContent = vms.location;
+        document.getElementById('vmsLastUpdate').textContent = vms.lastUpdate;
+
+        // Update counter
+        document.getElementById('vmsCounter').textContent = `${currentVMS} / ${totalVMS}`;
+    }
+
+    function nextVMS() {
+        currentVMS = currentVMS < totalVMS ? currentVMS + 1 : 1;
+        updateVMSDisplay();
+    }
+
+    function previousVMS() {
+        currentVMS = currentVMS > 1 ? currentVMS - 1 : totalVMS;
+        updateVMSDisplay();
+    }
+
+    // Initialize VMS display on page load
+    document.addEventListener('DOMContentLoaded', function () {
+        updateVMSDisplay();
+    });
+
+    // Initialize OpenStreetMap
+    let map;
+    let markers = [];
+
+    function initMap() {
+        try {
+            // Check if map already exists, destroy it first
+            if (map) {
+                map.remove();
+            }
+
+            // Initialize map centered on Uttar Pradesh
+            map = L.map('deviceMap', {
+                center: [26.4499, 80.3319],
+                zoom: 8,
+                zoomControl: true,
+                attributionControl: true
+            });
+
+            // Add OpenStreetMap tile layer with dark theme
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 19,
+                minZoom: 3
+            }).addTo(map);
+
+            // Sample device locations
+            const devices = [
+                { lat: 26.8467, lng: 80.9462, name: "VMS-214.80-L", status: "active", type: "VMS", id: "214.80 L" },
+                { lat: 26.4499, lng: 80.3319, name: "WIS-101", status: "active", type: "Weather", id: "WIS-101" },
+                { lat: 27.1767, lng: 78.0081, name: "VMS-185.40-R", status: "active", type: "VMS", id: "185.40 R" },
+                { lat: 25.4358, lng: 81.8463, name: "ECB-Station-1", status: "active", type: "ECB", id: "ECB-01" },
+                { lat: 26.2389, lng: 78.1677, name: "VMS-320.15-L", status: "inactive", type: "VMS", id: "320.15 L" },
+                { lat: 25.3176, lng: 82.9739, name: "VMS-145.90-R", status: "maintenance", type: "VMS", id: "145.90 R" },
+                { lat: 26.9124, lng: 75.7873, name: "WIS-102", status: "active", type: "Weather", id: "WIS-102" }
+            ];
+
+            // Custom icons for different device types
+            const getMarkerIcon = (status) => {
+                const colors = {
+                    active: '#22c55e',
+                    inactive: '#ef4444',
+                    maintenance: '#fb923c'
+                };
+
+                const color = colors[status] || colors.active;
+
+                return L.divIcon({
+                    className: 'custom-marker',
+                    html: `<div class="marker-pin" style="background: ${color};"><div class="marker-inner"></div></div>`,
+                    iconSize: [30, 42],
+                    iconAnchor: [15, 42],
+                    popupAnchor: [0, -42]
+                });
+            };
+
+            // Add markers for each device
+            devices.forEach(device => {
+                const icon = getMarkerIcon(device.status);
+
+                const marker = L.marker([device.lat, device.lng], { icon: icon }).addTo(map);
+
+                // Create popup content
+                const statusColor = device.status === 'active' ? '#22c55e' :
+                    device.status === 'inactive' ? '#ef4444' : '#fb923c';
+
+                const popupContent = `
+                        <div class="map-popup">
+                            <h6>${device.name}</h6>
+                            <p><strong>Type:</strong> ${device.type}</p>
+                            <p><strong>ID:</strong> ${device.id}</p>
+                            <p><strong>Status:</strong> <span style="color: ${statusColor}; font-weight: bold;">${device.status.toUpperCase()}</span></p>
+                            <p><strong>Location:</strong> ${device.lat.toFixed(4)}, ${device.lng.toFixed(4)}</p>
+                        </div>
+                    `;
+
+                marker.bindPopup(popupContent);
+                markers.push(marker);
+            });
+
+            // Add scale control
+            L.control.scale().addTo(map);
+
+            // Force map to refresh
+            setTimeout(() => {
+                map.invalidateSize();
+            }, 100);
+
+            console.log('Map initialized successfully');
+        } catch (error) {
+            console.error('Error initializing map:', error);
+        }
+    }
+
+    // Initialize map when page loads
+    window.addEventListener('load', function () {
+        updateVMSDisplay();
+
+        // Wait for the DOM to be fully ready
+        setTimeout(() => {
+            if (document.getElementById('deviceMap')) {
+                initMap();
+            } else {
+                console.error('Map container not found');
+            }
+        }, 500);
+    });
+
+    // Function to load camera feed (call this when you have live stream URL)
+    function loadCameraFeed(cameraIndex, streamUrl) {
+        const videoBoxes = document.querySelectorAll('.tmcs-video-box');
+        if (videoBoxes[cameraIndex]) {
+            const placeholder = videoBoxes[cameraIndex].querySelector('.video-placeholder');
+            const unavailableDiv = placeholder.querySelector('.video-unavailable');
+            const cameraFeed = placeholder.querySelector('.camera-feed');
+
+            // Hide "Video unreachable" and show camera feed
+            if (streamUrl) {
+                unavailableDiv.style.display = 'none';
+                cameraFeed.src = streamUrl;
+                cameraFeed.style.display = 'block';
+            } else {
+                // Show "Video unreachable" if no stream
+                unavailableDiv.style.display = 'flex';
+                cameraFeed.style.display = 'none';
+            }
+        }
+    }
+
+    // Example usage (uncomment and modify when you have real stream URLs):
+    // loadCameraFeed(0, 'http://your-camera-stream-url-1');
+    // loadCameraFeed(1, 'http://your-camera-stream-url-2');
+    // loadCameraFeed(2, 'http://your-camera-stream-url-3');
+    // loadCameraFeed(3, 'http://your-camera-stream-url-4');
+
+</script>

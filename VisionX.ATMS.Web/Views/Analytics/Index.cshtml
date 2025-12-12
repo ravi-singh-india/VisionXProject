@@ -1,0 +1,592 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "Analytics";
+}
+
+<div class="analytics-page">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h3>Analytics</h3>
+    </div>
+
+    <!-- Analytics Tabs -->
+    <div class="analytics-tabs">
+        <button class="tab-btn active" data-tab="wis" onclick="switchTab('wis')">WIS</button>
+        <button class="tab-btn" data-tab="atcc" onclick="switchTab('atcc')">ATCC</button>
+        <button class="tab-btn" data-tab="vides" onclick="switchTab('vides')">VIDES</button>
+        <button class="tab-btn" data-tab="htds" onclick="switchTab('htds')">HTDS</button>
+        <button class="tab-btn" data-tab="radr" onclick="switchTab('radr')">RADR</button>
+        <button class="tab-btn" data-tab="ecb" onclick="switchTab('ecb')">ECB</button>
+        <button class="tab-btn" data-tab="vms" onclick="switchTab('vms')">VMS</button>
+        <button class="tab-btn" data-tab="spr" onclick="switchTab('spr')">SPR</button>
+        <button class="tab-btn" data-tab="dpr" onclick="switchTab('dpr')">DPR</button>
+    </div>
+
+    <!-- WIS Tab Content -->
+    <div class="tab-content active" id="wis-tab">
+        <div class="content-header">
+            <h4>Weather Information System</h4>
+        </div>
+
+        <div class="filters-row">
+            <div class="filter-group">
+                <label>Type</label>
+                <select class="filter-select">
+                    <option value="hourly">Hourly</option>
+                    <option value="daily">Daily</option>
+                    <option value="monthly">Monthly</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>WIS Device</label>
+                <select class="filter-select">
+                    <option value="wis-101">WIS-101</option>
+                    <option value="wis-102">WIS-102</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Start</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-group">
+                <label>End</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-actions">
+                <button class="btn-action btn-get"><i class="fa-solid fa-download"></i> Get</button>
+                <button class="btn-action btn-reset">Reset</button>
+            </div>
+        </div>
+
+        <div class="data-table-section">
+            <table class="analytics-table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Date & Time</th>
+                        <th>Weather Station</th>
+                        <th>(max) Air Temperature</th>
+                        <th>(min) Air Temperature</th>
+                        <th>(avg) Air Temperature</th>
+                        <th>(max) Battery value</th>
+                        <th>(min) Battery value</th>
+                    </tr>
+                </thead>
+                <tbody id="wis-table-body">
+                    <tr><td colspan="8" class="no-data">No data available. Please select filters and click Get.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ATCC Tab Content -->
+    <div class="tab-content" id="atcc-tab">
+        <div class="content-header">
+            <h4>Automatic Traffic Counting Classifier</h4>
+        </div>
+
+        <div class="filters-row">
+            <div class="filter-group">
+                <label>Type</label>
+                <select class="filter-select">
+                    <option value="hourly">Hourly</option>
+                    <option value="daily">Daily</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>ATCC Device</label>
+                <select class="filter-select">
+                    <option value="tp1lhs">TP1LHS</option>
+                    <option value="tp2rhs">TP2RHS</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Start</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-group">
+                <label>End</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-actions">
+                <button class="btn-action btn-get"><i class="fa-solid fa-download"></i> Get</button>
+                <button class="btn-action btn-reset">Reset</button>
+            </div>
+        </div>
+
+        <div class="data-table-section">
+            <div class="total-count">Total Vehicle Count: <strong>20430</strong></div>
+            <table class="analytics-table">
+                <thead>
+                    <tr>
+                        <th>S. No</th>
+                        <th>Date & Time</th>
+                        <th>Bike</th>
+                        <th>LMV</th>
+                        <th>LCV</th>
+                        <th>Bus</th>
+                        <th>Axle 3</th>
+                        <th>Axle 4</th>
+                        <th>Axle 5</th>
+                        <th>Axle 6</th>
+                        <th>Truck</th>
+                        <th>MAV</th>
+                        <th>Auto</th>
+                        <th>Tractor</th>
+                        <th>Axle 7 Plus</th>
+                    </tr>
+                </thead>
+                <tbody id="atcc-table-body">
+                    <tr><td colspan="15" class="no-data">No data available. Please select filters and click Get.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- VIDES Tab Content -->
+    <div class="tab-content" id="vides-tab">
+        <div class="content-header">
+            <h4>Video Incident Detection & Enforcement System</h4>
+        </div>
+
+        <div class="filters-row">
+            <div class="filter-group">
+                <label>Type</label>
+                <select class="filter-select">
+                    <option value="daily">Daily</option>
+                    <option value="monthly">Monthly</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>VIDS Device</label>
+                <select class="filter-select">
+                    <option value="4_Perambalur_LHS">4_Perambalur_LHS</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Vids Inc. Type</label>
+                <select class="filter-select">
+                    <option value="">All Types</option>
+                    <option value="accident">Accident Detection</option>
+                    <option value="wrong-direction">Wrong Direction</option>
+                    <option value="stopped-vehicle">Stopped Vehicle</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Start</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-group">
+                <label>End</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-actions">
+                <button class="btn-action btn-get"><i class="fa-solid fa-download"></i> Get</button>
+                <button class="btn-action btn-reset">Reset</button>
+            </div>
+        </div>
+
+        <div class="filter-checkboxes">
+            <label class="checkbox-label">
+                <input type="checkbox" checked> With Image
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" checked> Without Image
+            </label>
+        </div>
+
+        <div class="summary-stats">
+            <div class="stat-item">Total Accident Detection: <strong>0</strong></div>
+            <div class="stat-item">Total Animal Crossing: <strong>0</strong></div>
+            <div class="stat-item">Total Fast/Moving Vehicle: <strong>0</strong></div>
+            <div class="stat-item">Total Opposite Direction: <strong>0</strong></div>
+            <div class="stat-item">Total Pedestrian Violation: <strong>0</strong></div>
+            <div class="stat-item">Total Slow/Moving Vehicle: <strong>0</strong></div>
+            <div class="stat-item">Total Stopped Vehicle: <strong>0</strong></div>
+            <div class="stat-item">Total Traffic Congestion: <strong>0</strong></div>
+            <div class="stat-item">Total Fog/Fire Detection: <strong>0</strong></div>
+        </div>
+
+        <div class="data-table-section">
+            <table class="analytics-table">
+                <thead>
+                    <tr>
+                        <th>S. No</th>
+                        <th>Date And Time</th>
+                        <th>Vids Incident ID</th>
+                        <th>VIDS Incident Type</th>
+                        <th>Camera IP</th>
+                        <th>Edgebox IP</th>
+                        <th>Incident Image</th>
+                        <th>Alarm ID</th>
+                    </tr>
+                </thead>
+                <tbody id="vides-table-body">
+                    <tr><td colspan="8" class="no-data">No rows</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- HTDS Tab Content -->
+    <div class="tab-content" id="htds-tab">
+        <div class="content-header">
+            <h4>Helmet Triple Ride Detection System</h4>
+        </div>
+
+        <div class="filters-row">
+            <div class="filter-group">
+                <label>Type</label>
+                <select class="filter-select">
+                    <option value="daily">Daily</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>HTDS Device</label>
+                <select class="filter-select">
+                    <option value="TP1_RPZ_LHS">TP1_RPZ_LHS</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>HTDS Inc. Type</label>
+                <select class="filter-select">
+                    <option value="">All</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Start</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-group">
+                <label>End</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-group">
+                <label>Registration Number</label>
+                <input type="text" class="filter-input" placeholder="Enter registration number">
+            </div>
+
+            <div class="filter-actions">
+                <button class="btn-action btn-get"><i class="fa-solid fa-download"></i> Get</button>
+                <button class="btn-action btn-reset">Reset</button>
+            </div>
+        </div>
+
+        <div class="filter-checkboxes">
+            <label class="checkbox-label">
+                <input type="checkbox"> PDF
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox"> With Image
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" checked> Without Image
+            </label>
+            <button class="btn-action btn-excel"><i class="fa-solid fa-file-excel"></i> Excel</button>
+            <button class="btn-action">Summary PDF</button>
+        </div>
+
+        <div class="summary-stats">
+            <div class="stat-item">Total With Helmet: <strong>0</strong></div>
+            <div class="stat-item">Total Without Helmet: <strong>0</strong></div>
+            <div class="stat-item">Total Triple Rider: <strong>0</strong></div>
+            <div class="stat-item">Total Bikes: <strong>0</strong></div>
+        </div>
+
+        <div class="data-table-section">
+            <table class="analytics-table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Date And Time</th>
+                        <th>HTDS Incident Id</th>
+                        <th>HTDS Incident Type</th>
+                        <th>Edgebox IP</th>
+                        <th>Details</th>
+                        <th>Side View Image</th>
+                        <th>Back View Image</th>
+                        <th>ANPR Image</th>
+                    </tr>
+                </thead>
+                <tbody id="htds-table-body">
+                    <tr><td colspan="9" class="no-data">No rows</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- RADR Tab Content -->
+    <div class="tab-content" id="radr-tab">
+        <div class="content-header">
+            <h4>Road Accident Dashboard</h4>
+        </div>
+
+        <div class="filters-grid-complex">
+            <select class="filter-select"><option>DAY TIMES</option></select>
+            <select class="filter-select"><option>ACCIDENT NATURES</option></select>
+            <select class="filter-select"><option>ACCIDENT CLASSIFICATION</option></select>
+            <select class="filter-select"><option>ACCIDENT CAUSES</option></select>
+            <select class="filter-select"><option>ROAD FEATURES</option></select>
+            <select class="filter-select"><option>ROAD CONDITIONS</option></select>
+            <select class="filter-select"><option>INTERSECTION TYPES</option></select>
+            <select class="filter-select"><option>WEATHER CONDITIONS</option></select>
+            <select class="filter-select"><option>ASSISTANCE AMBULANCE</option></select>
+            <select class="filter-select"><option>ASSISTANCE HYDRA</option></select>
+            <select class="filter-select"><option>ASSISTANCE RPV</option></select>
+            <select class="filter-select"><option>POLICE STATIONS</option></select>
+            <div class="filter-actions">
+                <button class="btn-action btn-get"><i class="fa-solid fa-download"></i> Get</button>
+                <button class="btn-action btn-reset"><i class="fa-solid fa-rotate-right"></i> Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ECB Tab Content -->
+    <div class="tab-content" id="ecb-tab">
+        <div class="content-header">
+            <h4>Emergency Call Box</h4>
+        </div>
+
+        <div class="filters-row">
+            <div class="filter-group">
+                <label>Start Date</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-group">
+                <label>End Date</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-actions">
+                <button class="btn-action btn-get"><i class="fa-solid fa-download"></i> Get</button>
+                <button class="btn-action btn-reset">Reset</button>
+                <button class="btn-action btn-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                <button class="btn-action btn-excel"><i class="fa-solid fa-file-excel"></i> Excel</button>
+            </div>
+        </div>
+
+        <div class="data-table-section">
+            <table class="analytics-table">
+                <thead>
+                    <tr>
+                        <th>S. No</th>
+                        <th>Device Id</th>
+                        <th>Chainage</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Answer Time</th>
+                        <th>Caller Id</th>
+                        <th>Call Status</th>
+                        <th>Call Duration(Sec)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="ecb-table-body">
+                    <tr><td colspan="10" class="no-data">No rows</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- VMS Tab Content -->
+    <div class="tab-content" id="vms-tab">
+        <div class="content-header">
+            <h4>Variable Message Sign</h4>
+        </div>
+
+        <div class="filters-row">
+            <div class="filter-group">
+                <label>Type</label>
+                <select class="filter-select">
+                    <option value="daily">Daily</option>
+                    <option value="monthly">Monthly</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>VMS Device</label>
+                <select class="filter-select">
+                    <option value="214.80 L">214.80 L</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Start</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-group">
+                <label>End</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-actions">
+                <button class="btn-action btn-get"><i class="fa-solid fa-download"></i> Get</button>
+                <button class="btn-action btn-reset">Reset</button>
+                <button class="btn-action btn-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                <button class="btn-action btn-excel"><i class="fa-solid fa-file-excel"></i> Excel</button>
+            </div>
+        </div>
+
+        <div class="data-table-section">
+            <table class="analytics-table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Date & time</th>
+                        <th>Device Id</th>
+                        <th>Device Name</th>
+                        <th>Chainage</th>
+                        <th>Message Title</th>
+                        <th>Message Displayed</th>
+                        <th>Duration (Sec)</th>
+                    </tr>
+                </thead>
+                <tbody id="vms-table-body">
+                    <tr><td colspan="8" class="no-data">Select filters and click Get to load data</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- SPR Tab Content -->
+    <div class="tab-content" id="spr-tab">
+        <div class="content-header">
+            <h4>System Performance Report</h4>
+        </div>
+
+        <div class="filters-row">
+            <div class="filter-group">
+                <label>SPR Device</label>
+                <select class="filter-select">
+                    <option value="cctv">CCTV</option>
+                    <option value="vms">VMS</option>
+                    <option value="wis">WIS</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Start</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-group">
+                <label>End</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-actions">
+                <button class="btn-action btn-get"><i class="fa-solid fa-download"></i> Get</button>
+                <button class="btn-action btn-reset">Reset</button>
+                <button class="btn-action btn-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                <button class="btn-action btn-excel"><i class="fa-solid fa-file-excel"></i> Excel</button>
+            </div>
+        </div>
+
+        <div class="data-table-section">
+            <table class="analytics-table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Source</th>
+                        <th>IP Address</th>
+                        <th>Chainage</th>
+                        <th>Down From</th>
+                        <th>Down Upto</th>
+                        <th>Total Down Time</th>
+                    </tr>
+                </thead>
+                <tbody id="spr-table-body">
+                    <tr><td colspan="7" class="no-data">No rows</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- DPR Tab Content -->
+    <div class="tab-content" id="dpr-tab">
+        <div class="content-header">
+            <h4>Daily Performance Report</h4>
+        </div>
+
+        <div class="filters-row">
+            <div class="filter-group">
+                <label>Select Date</label>
+                <input type="date" class="filter-input">
+            </div>
+
+            <div class="filter-actions">
+                <button class="btn-action btn-get"><i class="fa-solid fa-download"></i> Get</button>
+                <button class="btn-action btn-reset">Reset</button>
+            </div>
+        </div>
+
+        <div class="data-table-section">
+            <table class="analytics-table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Device Type</th>
+                        <th>Total Count</th>
+                        <th>Working</th>
+                        <th>Not Working</th>
+                        <th>Performance %</th>
+                    </tr>
+                </thead>
+                <tbody id="dpr-table-body">
+                    <tr><td colspan="6" class="no-data">No data available</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="table-pagination">
+        <div class="pagination-left">
+            <span>Rows per page:</span>
+            <select class="rows-select">
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100" selected>100</option>
+            </select>
+        </div>
+        <div class="pagination-center">
+            <span id="pageInfo">0-0 of 0</span>
+        </div>
+        <div class="pagination-right">
+            <button class="page-btn"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function switchTab(tabName) {
+        // Remove active class from all tabs and contents
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+        // Add active class to selected tab
+        document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+        document.getElementById(`${tabName}-tab`).classList.add('active');
+    }
+</script>

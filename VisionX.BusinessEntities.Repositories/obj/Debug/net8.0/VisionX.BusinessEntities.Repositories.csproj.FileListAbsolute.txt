@@ -1,0 +1,11 @@
+D:\R&D\VisionX\VisionX.BusinessEntities.Repositories\bin\Debug\net8.0\VisionX.BusinessEntities.Repositories.deps.json
+D:\R&D\VisionX\VisionX.BusinessEntities.Repositories\bin\Debug\net8.0\VisionX.BusinessEntities.Repositories.dll
+D:\R&D\VisionX\VisionX.BusinessEntities.Repositories\bin\Debug\net8.0\VisionX.BusinessEntities.Repositories.pdb
+D:\R&D\VisionX\VisionX.BusinessEntities.Repositories\obj\Debug\net8.0\VisionX.BusinessEntities.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+D:\R&D\VisionX\VisionX.BusinessEntities.Repositories\obj\Debug\net8.0\VisionX.BusinessEntities.Repositories.AssemblyInfoInputs.cache
+D:\R&D\VisionX\VisionX.BusinessEntities.Repositories\obj\Debug\net8.0\VisionX.BusinessEntities.Repositories.AssemblyInfo.cs
+D:\R&D\VisionX\VisionX.BusinessEntities.Repositories\obj\Debug\net8.0\VisionX.BusinessEntities.Repositories.csproj.CoreCompileInputs.cache
+D:\R&D\VisionX\VisionX.BusinessEntities.Repositories\obj\Debug\net8.0\VisionX.BusinessEntities.Repositories.dll
+D:\R&D\VisionX\VisionX.BusinessEntities.Repositories\obj\Debug\net8.0\refint\VisionX.BusinessEntities.Repositories.dll
+D:\R&D\VisionX\VisionX.BusinessEntities.Repositories\obj\Debug\net8.0\VisionX.BusinessEntities.Repositories.pdb
+D:\R&D\VisionX\VisionX.BusinessEntities.Repositories\obj\Debug\net8.0\ref\VisionX.BusinessEntities.Repositories.dll

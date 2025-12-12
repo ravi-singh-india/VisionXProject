@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - VisionX ATMS</title>
+    <link rel="stylesheet" href="~/css/login.css" />
+</head>
+<body>
+    <div class="login-container">
+        <!-- ✅ Logo section -->
+        <div class="login-header">
+            <img src="~/images/visionx_logo.png" alt="VisionX Logo" class="header-logo" />
+            @* <h2 class="header-title">VisionX Infrasys</h2> *@
+        </div>
+
+        <!-- ✅ Render Login Page Content -->
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -1,0 +1,321 @@
+﻿@model VisionX.ATMS.Web.Models.VASDViewModel
+@{
+    ViewData["Title"] = "Vehicle Actuated Speed Display (VASD)";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="vasd-container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="header-left">
+            <h1><i class="fas fa-tachometer-alt"></i> Vehicle Actuated Speed Display (VASD)</h1>
+            <p class="page-subtitle">Real-time vehicle speed monitoring and display management</p>
+        </div>
+        <div class="header-right">
+            <button class="btn btn-primary" id="refreshData">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+            <button class="btn btn-secondary" id="exportReport">
+                <i class="fas fa-download"></i> Export Report
+            </button>
+        </div>
+    </div>
+
+    <!-- Statistics Row -->
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-icon bg-blue">
+                <i class="fas fa-tv"></i>
+            </div>
+            <div class="stat-content">
+                <h3 id="totalDevices">@Model.TotalDevices</h3>
+                <p>Total Devices</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon bg-green">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-content">
+                <h3 id="activeDevices">@Model.ActiveDevices</h3>
+                <p>Active Devices</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon bg-red">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="stat-content">
+                <h3 id="alertCount">@Model.SpeedViolations</h3>
+                <p>Speed Violations</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon bg-yellow">
+                <i class="fas fa-car"></i>
+            </div>
+            <div class="stat-content">
+                <h3 id="vehiclesDetected">@Model.VehiclesDetectedToday</h3>
+                <p>Vehicles Detected Today</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon bg-purple">
+                <i class="fas fa-gauge-high"></i>
+            </div>
+            <div class="stat-content">
+                <h3 id="avgSpeed">@Model.AverageSpeed</h3>
+                <p>Avg Speed (km/h)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="vasd-grid">
+        <!-- Left Panel - Device List -->
+        <div class="vasd-panel device-panel">
+            <div class="panel-header">
+                <h3><i class="fas fa-list"></i> VASD Devices</h3>
+                <div class="panel-actions">
+                    <input type="text" class="search-input" id="deviceSearch" placeholder="Search devices...">
+                    <button class="btn-icon" id="addDevice">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="device-list" id="deviceList">
+                    @foreach (var device in Model.VASDDevices)
+                    {
+                        <div class="device-item @(device.IsActive ? "active" : "inactive")" data-device-id="@device.DeviceId">
+                            <div class="device-status @(device.IsActive ? "status-online" : "status-offline")"></div>
+                            <div class="device-info">
+                                <h4>@device.DeviceName</h4>
+                                <p>@device.Location</p>
+                                <span class="device-id">ID: @device.DeviceId</span>
+                            </div>
+                            <div class="device-speed">
+                                <span class="speed-display">@device.CurrentSpeed</span>
+                                <span class="speed-unit">km/h</span>
+                            </div>
+                            <div class="device-actions">
+                                <button class="btn-icon-sm view-device" data-device-id="@device.DeviceId">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon-sm edit-device" data-device-id="@device.DeviceId">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Panel - Live Display Simulator -->
+        <div class="vasd-panel display-panel">
+            <div class="panel-header">
+                <h3><i class="fas fa-desktop"></i> Live Display</h3>
+                <div class="device-selector">
+                    <select id="selectedDevice" class="form-control">
+                        <option value="">Select Device</option>
+                        @foreach (var device in Model.VASDDevices)
+                        {
+                            <option value="@device.DeviceId">@device.DeviceName - @device.Location</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="vasd-display-simulator">
+                    <div class="display-screen">
+                        <div class="display-header">
+                            <span class="display-message">YOUR SPEED</span>
+                        </div>
+                        <div class="display-speed">
+                            <span class="speed-value" id="displaySpeed">45</span>
+                            <span class="speed-unit-large">km/h</span>
+                        </div>
+                        <div class="display-limit">
+                            <span>Speed Limit: <strong id="speedLimit">80</strong> km/h</span>
+                        </div>
+                        <div class="display-status" id="displayStatus">
+                            <i class="fas fa-check-circle"></i>
+                            <span>SAFE SPEED</span>
+                        </div>
+                    </div>
+                    <div class="display-controls">
+                        <button class="control-btn" id="testDisplay">
+                            <i class="fas fa-vial"></i> Test Display
+                        </button>
+                        <button class="control-btn" id="calibrateDevice">
+                            <i class="fas fa-cog"></i> Calibrate
+                        </button>
+                        <button class="control-btn" id="resetDevice">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Device Settings -->
+                <div class="device-settings">
+                    <h4>Device Settings</h4>
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <label>Speed Limit For Violation (km/h)</label>
+                            <input type="number" class="form-control" id="speedLimitInput" value="80">
+                        </div>
+                        <div class="setting-item">
+                            <label>Warning Threshold (%)</label>
+                            <input type="number" class="form-control" id="warningThreshold" value="90">
+                        </div>
+                        <div class="setting-item">
+                            <label>Display Mode</label>
+                            <select class="form-control" id="displayMode">
+                                <option value="continuous">Continuous</option>
+                                <option value="trigger">Vehicle Triggered</option>
+                                <option value="scheduled">Scheduled</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Brightness (%)</label>
+                            <input type="range" class="form-range" id="brightness" min="0" max="100" value="80">
+                            <span id="brightnessValue">80%</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mt-20" id="saveSettings">
+                        <i class="fas fa-save"></i> Save Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Analytics & Charts -->
+        <div class="vasd-panel analytics-panel">
+            <div class="panel-header">
+                <h3><i class="fas fa-chart-line"></i> Analytics</h3>
+                <select class="form-control-sm" id="analyticsTimeframe">
+                    <option value="today">Today</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                </select>
+            </div>
+            <div class="panel-body">
+                <!-- Speed Distribution Chart -->
+                <div class="chart-container">
+                    <h4>Speed Distribution</h4>
+                    <canvas id="speedDistributionChart"></canvas>
+                </div>
+
+                <!-- Hourly Traffic Chart -->
+                <div class="chart-container">
+                    <h4>Hourly Vehicle Count</h4>
+                    <canvas id="hourlyTrafficChart"></canvas>
+                </div>
+
+                <!-- Violation Stats -->
+                <div class="violation-stats">
+                    <h4>Violation Statistics</h4>
+                    <div class="violation-item">
+                        <span class="violation-label">Minor (80-90 km/h)</span>
+                        <div class="violation-bar">
+                            <div class="violation-fill minor" style="width: 65%"></div>
+                        </div>
+                        <span class="violation-count">156</span>
+                    </div>
+                    <div class="violation-item">
+                        <span class="violation-label">Moderate (90-100 km/h)</span>
+                        <div class="violation-bar">
+                            <div class="violation-fill moderate" style="width: 40%"></div>
+                        </div>
+                        <span class="violation-count">98</span>
+                    </div>
+                    <div class="violation-item">
+                        <span class="violation-label">Severe (>100 km/h)</span>
+                        <div class="violation-bar">
+                            <div class="violation-fill severe" style="width: 25%"></div>
+                        </div>
+                        <span class="violation-count">62</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Detections Table -->
+    <div class="vasd-panel table-panel">
+        <div class="panel-header">
+            <h3><i class="fas fa-history"></i> Recent Vehicle Detections</h3>
+            <div class="table-filters">
+                <select class="form-control-sm" id="filterDevice">
+                    <option value="">All Devices</option>
+                    @foreach (var device in Model.VASDDevices)
+                    {
+                        <option value="@device.DeviceId">@device.DeviceName</option>
+                    }
+                </select>
+                <select class="form-control-sm" id="filterViolation">
+                    <option value="">All Records</option>
+                    <option value="violation">Violations Only</option>
+                    <option value="safe">Safe Speed Only</option>
+                </select>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="data-table" id="detectionsTable">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Device</th>
+                        <th>Location</th>
+                        <th>Speed (km/h)</th>
+                        <th>Limit (km/h)</th>
+                        <th>Difference</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="detectionsTableBody">
+                    @foreach (var detection in Model.RecentDetections)
+                    {
+                        <tr class="@(detection.IsViolation ? "violation-row" : "")">
+                            <td>@detection.Timestamp.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                            <td>@detection.DeviceName</td>
+                            <td>@detection.Location</td>
+                            <td class="speed-cell">@detection.Speed</td>
+                            <td>@detection.SpeedLimit</td>
+                            <td class="@(detection.IsViolation ? "text-danger" : "text-success")">
+                                @(detection.Speed - detection.SpeedLimit > 0 ? "+" : "")@(detection.Speed - detection.SpeedLimit)
+                            </td>
+                            <td>
+                                @if (detection.IsViolation)
+                                {
+                                    <span class="badge badge-danger">VIOLATION</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-success">SAFE</span>
+                                }
+                            </td>
+                            <td>
+                                <button class="btn-icon-sm view-details" data-detection-id="@detection.Id">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="table-pagination">
+                <button class="btn-pagination" id="prevPage"><i class="fas fa-chevron-left"></i></button>
+                <span class="page-info">Page <span id="currentPage">1</span> of <span id="totalPages">10</span></span>
+                <button class="btn-pagination" id="nextPage"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <script src="~/js/vasd.js"></script>
+}

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - VisionX ATMS</title>
+    <link rel="stylesheet" href="~/css/dashboard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="~/images/visionx_logo.png" alt="VisionX Logo" />
+                <h3>VisionX ATMS</h3>
+            </div>
+            <ul class="menu">
+                <li><a href="/Dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
+                <li><a href="/Alarm"><i class="fa fa-bell"></i> Alarm</a></li>
+                <li><a href="/Analytics"><i class="fa fa-chart-line"></i> Analytics</a></li>
+                <li><a href="/Devices"><i class="fa fa-server"></i> Devices</a></li>
+                <li><a href="/Settings"><i class="fa fa-cog"></i> Settings</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header class="topbar">
+                <div class="datetime">@DateTime.Now.ToString("hh:mm tt - dd MMM yyyy")</div>
+                <div class="weather">☀️ 36.2°C</div>
+            </header>
+
+            <section class="dashboard-body">
+                @RenderBody()
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,534 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "GIS Map";
+}
+
+<div class="gis-map-page">
+    <!-- Map Container -->
+    <div class="map-wrapper" id="mapWrapper">
+        <div id="gisMap" style="width: 100%; height: 100vh;"></div>
+
+        <!-- Map Controls -->
+        <div class="map-controls">
+            <button class="map-control-btn" onclick="zoomIn()"><i class="fa-solid fa-plus"></i></button>
+            <button class="map-control-btn" onclick="zoomOut()"><i class="fa-solid fa-minus"></i></button>
+        </div>
+
+        <!-- Quick Access Icons (Bottom) -->
+        <div class="quick-access-bar">
+            <button class="quick-btn" onclick="showSystemPanel('tmcs')" title="TMCS">
+                <i class="fa-solid fa-video"></i>
+            </button>
+            <button class="quick-btn" onclick="showSystemPanel('atcc')" title="ATCC">
+                <i class="fa-solid fa-car"></i>
+            </button>
+            <button class="quick-btn" onclick="showSystemPanel('ecb')" title="ECB">
+                <i class="fa-solid fa-phone"></i>
+            </button>
+            <button class="quick-btn" onclick="showSystemPanel('wis')" title="WIS">
+                <i class="fa-solid fa-cloud"></i>
+            </button>
+            <button class="quick-btn" onclick="showSystemPanel('vms')" title="VMS">
+                <i class="fa-solid fa-sign-hanging"></i>
+            </button>
+            <button class="quick-btn" onclick="showSystemPanel('vides')" title="VIDES">
+                <i class="fa-solid fa-camera"></i>
+            </button>
+            <button class="quick-btn" onclick="showSystemPanel('htds')" title="HTDS">
+                <i class="fa-solid fa-motorcycle"></i>
+            </button>
+            <button class="quick-btn" onclick="showSystemPanel('vasd')" title="VASD">
+                <i class="fa-solid fa-gauge"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Right Side Panel -->
+    <div class="side-panel" id="sidePanel">
+        <div class="panel-header">
+            <h4 id="panelTitle">System Details</h4>
+            <button class="panel-close" onclick="closeSidePanel()">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="panel-content" id="panelContent">
+            <!-- Content will be dynamically loaded -->
+        </div>
+    </div>
+</div>
+
+<script>
+    let map;
+    let markers = [];
+
+    // Sample device data
+    const devicesData = {
+        tmcs: [
+            { id: 'CCTV02', name: 'UPT MJR JN', lat: 11.277652, lng: 78.898554, status: 'offline', chainage: '195+480 R', ip: '192.168.155.33', port: '554' }
+        ],
+        atcc: [
+            { id: 'TP1_LHS', name: 'TP1_LHS', lat: 11.708825, lng: 79.323838, status: 'online', chainage: '194+770 L', ip: '192.168.155.61', totalCount: 22179 }
+        ],
+        ecb: [
+            { id: 'ECB-01', name: 'ECB Station 1', lat: 11.5, lng: 78.8, status: 'online', onlineCalls: 77, offlineCalls: 13 }
+        ],
+        wis: [
+            { id: 'WIS-101', name: 'WIS-101', lat: 11.897671, lng: 78.999264, status: 'online', chainage: 'Ch.14+640', ip: '192.168.203.32', port: '30000', temp: '36.2°C' }
+        ],
+        vms: [
+            { id: '214.80 L', name: '214.80 L', lat: 11.809344, lng: 79.176457, status: 'offline', chainage: '214.80 L', ip: '192.168.181.2', port: '7008977', message: 'MAXIMUM SPEED LIMIT 80 KMPH' }
+        ],
+        vides: [
+            { id: '4_Perambalur_LHS', name: '4_Perambalur_LHS', lat: 11.245448, lng: 78.895238, status: 'offline', ip: '192.168.154.43' }
+        ],
+        htds: [
+            { id: '101_TP2_LHS', name: '101_TP2_LHS', lat: 11.936854, lng: 78.993994, status: 'offline', ip: '192.168.2.243' }
+        ],
+        vasd: [
+            { id: 'VASD-01', name: 'Speed Detection 1', lat: 11.6, lng: 79.0, status: 'online' }
+        ]
+    };
+
+    // Initialize map
+    function initMap() {
+        map = L.map('gisMap').setView([11.5, 79.0], 9);
+
+        // Dark theme tile layer
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap | CARTO',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Add highway route
+        const routeCoordinates = [
+            [11.2, 78.8],
+            [11.5, 79.0],
+            [11.8, 79.2],
+            [12.0, 79.3]
+        ];
+
+        L.polyline(routeCoordinates, {
+            color: '#00b4d8',
+            weight: 4,
+            opacity: 0.8
+        }).addTo(map);
+
+        // Add all device markers
+        addMarkers();
+    }
+
+    // Add markers for all systems
+    function addMarkers() {
+        Object.keys(devicesData).forEach(systemType => {
+            devicesData[systemType].forEach(device => {
+                const markerColor = device.status === 'online' ? '#10b981' : '#ef4444';
+                const markerIcon = getMarkerIcon(systemType, markerColor);
+
+                const marker = L.marker([device.lat, device.lng], {
+                    icon: markerIcon
+                }).addTo(map);
+
+                marker.on('click', () => {
+                    showDeviceDetails(systemType, device);
+                });
+
+                markers.push(marker);
+            });
+        });
+    }
+
+    // Get custom marker icon
+    function getMarkerIcon(systemType, color) {
+        return L.divIcon({
+            className: 'custom-map-marker',
+            html: `<div class="marker-pin" style="background-color: ${color};"></div>`,
+            iconSize: [30, 40],
+            iconAnchor: [15, 40]
+        });
+    }
+
+    // Show device details in side panel
+    function showDeviceDetails(systemType, device) {
+        const panel = document.getElementById('sidePanel');
+        const content = document.getElementById('panelContent');
+
+        panel.classList.add('active');
+
+        let contentHTML = '';
+
+        switch (systemType) {
+            case 'tmcs':
+                contentHTML = getTMCSContent(device);
+                break;
+            case 'atcc':
+                contentHTML = getATCCContent(device);
+                break;
+            case 'ecb':
+                contentHTML = getECBContent(device);
+                break;
+            case 'wis':
+                contentHTML = getWISContent(device);
+                break;
+            case 'vms':
+                contentHTML = getVMSContent(device);
+                break;
+            case 'vides':
+                contentHTML = getVIDESContent(device);
+                break;
+            case 'htds':
+                contentHTML = getHTDSContent(device);
+                break;
+            case 'vasd':
+                contentHTML = getVASDContent(device);
+                break;
+        }
+
+        content.innerHTML = contentHTML;
+    }
+
+    // Content templates for each system
+    function getTMCSContent(device) {
+        return `
+                <div class="device-panel">
+                    <div class="panel-section">
+                        <div class="status-indicator ${device.status}"></div>
+                        <h5>Traffic Monitoring Camera</h5>
+                        <p class="device-counts">Online: 0 | Offline: 4 | Unmapped: 0 | Total: 4</p>
+                    </div>
+                    <div class="panel-info">
+                        <div class="info-row">
+                            <span>Device Id:</span>
+                            <span>${device.id}</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Device name:</span>
+                            <span>${device.name}</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Chainage:</span>
+                            <span>${device.chainage}</span>
+                        </div>
+                        <div class="info-row">
+                            <span>IP:</span>
+                            <span>${device.ip}</span>
+                        </div>
+                        <div class="info-row">
+                            <span>PORT:</span>
+                            <span>${device.port}</span>
+                        </div>
+                    </div>
+                    <div class="panel-tabs">
+                        <button class="panel-tab active">Live Video</button>
+                        <button class="panel-tab">History</button>
+                        <button class="panel-tab">NVR</button>
+                        <button class="panel-tab">Alarms</button>
+                    </div>
+                    <div class="video-placeholder">
+                        <i class="fa-solid fa-video-slash"></i>
+                        <p>Web RTC Live<br>Video unreachable</p>
+                    </div>
+                    <div class="quick-access-numbers">
+                        <span>Quick Access</span>
+                        <button>1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>4</button>
+                    </div>
+                </div>
+            `;
+    }
+
+    function getATCCContent(device) {
+        return `
+                <div class="device-panel">
+                    <div class="panel-section">
+                        <div class="status-indicator ${device.status}"></div>
+                        <h5>Automatic Traffic Counter</h5>
+                        <p class="device-counts">Online: 2 | Offline: 0 | Unmapped: 0 | Total: 2</p>
+                    </div>
+                    <div class="panel-info">
+                        <div class="info-row">
+                            <span>Device Id:</span>
+                            <span>${device.id}</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Device name:</span>
+                            <span>${device.name}</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Chainage:</span>
+                            <span>${device.chainage}</span>
+                        </div>
+                        <div class="info-row">
+                            <span>IP:</span>
+                            <span>${device.ip}</span>
+                        </div>
+                    </div>
+                    <div class="panel-tabs">
+                        <button class="panel-tab active">Main</button>
+                        <button class="panel-tab">Alarms</button>
+                    </div>
+                    <div class="traffic-count">
+                        <div class="count-header">
+                            <i class="fa-solid fa-car"></i>
+                            <h2>${device.totalCount}</h2>
+                            <p>Total</p>
+                        </div>
+                        <div class="vehicle-grid">
+                            <div class="vehicle-item"><span>14581 Car/Jeep</span></div>
+                            <div class="vehicle-item"><span>23 Tractor</span></div>
+                            <div class="vehicle-item"><span>2228 Bus</span></div>
+                            <div class="vehicle-item"><span>625 Axle 3</span></div>
+                            <div class="vehicle-item"><span>202 Truck</span></div>
+                            <div class="vehicle-item"><span>732 Axle 4</span></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+    }
+
+    function getECBContent(device) {
+        return `
+                <div class="device-panel">
+                    <div class="panel-section">
+                        <div class="status-indicator ${device.status}"></div>
+                        <h5>Emergency Call Box</h5>
+                        <p class="device-counts">Online: ${device.onlineCalls} | Offline: ${device.offlineCalls}</p>
+                    </div>
+                    <div class="panel-tabs">
+                        <button class="panel-tab active">Active Calls</button>
+                        <button class="panel-tab">Summary</button>
+                        <button class="panel-tab">Call MGT</button>
+                        <button class="panel-tab">Call Audit</button>
+                        <button class="panel-tab">Alarm</button>
+                    </div>
+                    <div class="no-data-placeholder">
+                        <i class="fa-solid fa-phone-slash"></i>
+                        <p>Active Calls Unavailable</p>
+                    </div>
+                </div>
+            `;
+    }
+
+    function getWISContent(device) {
+        return `
+                <div class="device-panel">
+                    <div class="panel-section">
+                        <div class="status-indicator ${device.status}"></div>
+                        <h5>Weather Information System</h5>
+                    </div>
+                    <div class="panel-info">
+                        <div class="info-row">
+                            <span>Device Id:</span>
+                            <span>${device.id}</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Chainage:</span>
+                            <span>${device.chainage}</span>
+                        </div>
+                        <div class="info-row">
+                            <span>IP:</span>
+                            <span>${device.ip}</span>
+                        </div>
+                        <div class="info-row">
+                            <span>PORT:</span>
+                            <span>${device.port}</span>
+                        </div>
+                    </div>
+                    <div class="weather-display">
+                        <div class="weather-main">
+                            <i class="fa-solid fa-cloud-sun"></i>
+                            <h2>${device.temp}</h2>
+                            <p>2025-06-03T15:49:00Z</p>
+                        </div>
+                        <div class="weather-details">
+                            <p><i class="fa-solid fa-temperature-three-quarters"></i> Air Temp: ${device.temp}</p>
+                            <p><i class="fa-solid fa-eye"></i> Visibility: 6000 m</p>
+                            <p><i class="fa-solid fa-water"></i> Humidity: 35%</p>
+                            <p><i class="fa-solid fa-gauge-high"></i> Wind Speed: 15 km/h</p>
+                            <p><i class="fa-solid fa-wind"></i> Wind Direction: South/SouthWest</p>
+                            <p><i class="fa-solid fa-droplet"></i> Rain: 1.52 mm</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+    }
+
+    function getVMSContent(device) {
+        return `
+                <div class="device-panel">
+                    <div class="panel-section">
+                        <div class="status-indicator ${device.status}"></div>
+                        <h5>Variable Message Sign</h5>
+                    </div>
+                    <div class="panel-info">
+                        <div class="info-row">
+                            <span>Device Id:</span>
+                            <span>${device.id}</span>
+                        </div>
+                        <div class="info-row">
+                            <span>IP:</span>
+                            <span>${device.ip}</span>
+                        </div>
+                    </div>
+                    <div class="panel-tabs">
+                        <button class="panel-tab active">Main</button>
+                        <button class="panel-tab">Alarms</button>
+                    </div>
+                    <div class="vms-display-box">
+                        <p>${device.message}</p>
+                    </div>
+                    <div class="vms-messages">
+                        <div class="message-item">
+                            <i class="fa-solid fa-file"></i>
+                            <span>Label: Speed limit</span>
+                            <span>Duration: 30</span>
+                            <span>Priority: Normal</span>
+                        </div>
+                    </div>
+                    <div class="vms-actions">
+                        <button class="btn-vms">Send Message</button>
+                        <button class="btn-vms">Manage Messages</button>
+                        <button class="btn-vms">Settings</button>
+                    </div>
+                </div>
+            `;
+    }
+
+    function getVIDESContent(device) {
+        return `
+                <div class="device-panel">
+                    <div class="panel-section">
+                        <div class="status-indicator ${device.status}"></div>
+                        <h5>Video Incident Detection</h5>
+                    </div>
+                    <div class="panel-info">
+                        <div class="info-row">
+                            <span>Device Id:</span>
+                            <span>${device.id}</span>
+                        </div>
+                        <div class="info-row">
+                            <span>IP:</span>
+                            <span>${device.ip}</span>
+                        </div>
+                    </div>
+                    <div class="panel-tabs">
+                        <button class="panel-tab active">Live</button>
+                    </div>
+                    <div class="video-placeholder">
+                        <i class="fa-solid fa-video-slash"></i>
+                        <p>Web RTC Live<br>Video unreachable</p>
+                    </div>
+                    <div class="incident-type">
+                        <label>VIDES Incident Type:</label>
+                        <select>
+                            <option>Fast Moving Vehicle</option>
+                        </select>
+                    </div>
+                    <div class="panel-tabs">
+                        <button class="panel-tab active">Devices</button>
+                        <button class="panel-tab">Events And Incidents</button>
+                    </div>
+                </div>
+            `;
+    }
+
+    function getHTDSContent(device) {
+        return `
+                <div class="device-panel">
+                    <div class="panel-section">
+                        <div class="status-indicator ${device.status}"></div>
+                        <h5>Helmet Triple Ride Detection</h5>
+                    </div>
+                    <div class="panel-info">
+                        <div class="info-row">
+                            <span>Device Id:</span>
+                            <span>${device.id}</span>
+                        </div>
+                        <div class="info-row">
+                            <span>IP:</span>
+                            <span>${device.ip}</span>
+                        </div>
+                    </div>
+                    <div class="panel-tabs">
+                        <button class="panel-tab active">Side View</button>
+                        <button class="panel-tab">Back View</button>
+                    </div>
+                    <div class="video-placeholder">
+                        <i class="fa-solid fa-video-slash"></i>
+                        <p>Web RTC Live<br>Video unreachable</p>
+                    </div>
+                    <div class="incident-type">
+                        <label>HTDS Inc. Type:</label>
+                        <select>
+                            <option>Without Helmet</option>
+                        </select>
+                    </div>
+                    <div class="panel-tabs">
+                        <button class="panel-tab active">Devices</button>
+                        <button class="panel-tab">Events And Incidents</button>
+                    </div>
+                </div>
+            `;
+    }
+
+    function getVASDContent(device) {
+        return `
+                <div class="device-panel">
+                    <div class="panel-section">
+                        <div class="status-indicator ${device.status}"></div>
+                        <h5>Vehicle Speed Detection</h5>
+                    </div>
+                    <div class="panel-info">
+                        <div class="info-row">
+                            <span>Device Id:</span>
+                            <span>N/A</span>
+                        </div>
+                    </div>
+                    <div class="panel-tabs">
+                        <button class="panel-tab active">Live Video</button>
+                    </div>
+                    <div class="speed-display">
+                        <div class="video-placeholder">
+                            <i class="fa-solid fa-video-slash"></i>
+                            <p>Web RTC Live<br>Video unreachable</p>
+                        </div>
+                        <div class="speed-meter">
+                            <h2>20Km/h</h2>
+                            <p>Vehicle Speed</p>
+                        </div>
+                    </div>
+                    <div class="panel-tabs">
+                        <button class="panel-tab active">Devices</button>
+                        <button class="panel-tab">Events And Incidents</button>
+                    </div>
+                </div>
+            `;
+    }
+
+    // Show system panel
+    function showSystemPanel(systemType) {
+        const devices = devicesData[systemType];
+        if (devices && devices.length > 0) {
+            showDeviceDetails(systemType, devices[0]);
+        }
+    }
+
+    // Close side panel
+    function closeSidePanel() {
+        document.getElementById('sidePanel').classList.remove('active');
+    }
+
+    // Map controls
+    function zoomIn() {
+        map.zoomIn();
+    }
+
+    function zoomOut() {
+        map.zoomOut();
+    }
+
+    // Initialize on page load
+    window.addEventListener('load', initMap);
+</script>

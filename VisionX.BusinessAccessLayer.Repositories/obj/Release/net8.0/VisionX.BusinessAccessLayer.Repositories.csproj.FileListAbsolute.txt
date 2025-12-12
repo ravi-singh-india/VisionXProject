@@ -1,0 +1,15 @@
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\bin\Release\net8.0\VisionX.BusinessAccessLayer.Repositories.deps.json
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\bin\Release\net8.0\VisionX.BusinessAccessLayer.Repositories.dll
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\bin\Release\net8.0\VisionX.BusinessAccessLayer.Repositories.pdb
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\bin\Release\net8.0\VisionX.BusinessEntities.Repositories.dll
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\bin\Release\net8.0\VisionX.BusinessEntities.Repositories.pdb
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\obj\Release\net8.0\VisionX.BusinessAccessLayer.Repositories.csproj.AssemblyReference.cache
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\obj\Release\net8.0\VisionX.BusinessAccessLayer.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\obj\Release\net8.0\VisionX.BusinessAccessLayer.Repositories.AssemblyInfoInputs.cache
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\obj\Release\net8.0\VisionX.BusinessAccessLayer.Repositories.AssemblyInfo.cs
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\obj\Release\net8.0\VisionX.BusinessAccessLayer.Repositories.csproj.CoreCompileInputs.cache
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\obj\Release\net8.0\VisionX.BusinessAccessLayer.Repositories.csproj.CopyComplete
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\obj\Release\net8.0\VisionX.BusinessAccessLayer.Repositories.dll
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\obj\Release\net8.0\refint\VisionX.BusinessAccessLayer.Repositories.dll
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\obj\Release\net8.0\VisionX.BusinessAccessLayer.Repositories.pdb
+D:\R&D\VisionXProjects\ATMS\VisionX\VisionX.BusinessAccessLayer.Repositories\obj\Release\net8.0\ref\VisionX.BusinessAccessLayer.Repositories.dll

@@ -1,0 +1,324 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "DMS - Disaster Management System";
+}
+
+<div class="dms-page">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h3>Disaster Management System</h3>
+    </div>
+
+    <!-- DMS Table -->
+    <div class="dms-table-container">
+        <table class="dms-table" id="dmsTable">
+            <thead>
+                <tr>
+                    <th>S. No</th>
+                    <th>Take Action</th>
+                    <th>Subject</th>
+                    <th>Source</th>
+                    <th>Severity</th>
+                    <th>Status</th>
+                    <th>Cause</th>
+                    <th>Ref Id</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="dmsTableBody">
+                <!-- Data will be populated by JavaScript -->
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="table-pagination">
+            <div class="pagination-left">
+                <span>Rows per page:</span>
+                <select class="rows-select" id="rowsPerPage" onchange="changeRowsPerPage()">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100" selected>100</option>
+                </select>
+            </div>
+            <div class="pagination-center">
+                <span id="pageInfo">1-10 of 10</span>
+            </div>
+            <div class="pagination-right">
+                <button class="page-btn" id="prevPage" onclick="prevPage()">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="page-btn" id="nextPage" onclick="nextPage()">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disaster Details Modal -->
+    <div class="disaster-modal" id="disasterModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Disaster Details</h4>
+                <button class="btn-close" onclick="closeDisasterModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-group">
+                    <label>Subject:</label>
+                    <p id="modalSubject"></p>
+                </div>
+                <div class="detail-group">
+                    <label>Source:</label>
+                    <p id="modalSource"></p>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-group">
+                        <label>Severity:</label>
+                        <p id="modalSeverity"></p>
+                    </div>
+                    <div class="detail-group">
+                        <label>Status:</label>
+                        <p id="modalStatus"></p>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-group">
+                        <label>Cause:</label>
+                        <p id="modalCause"></p>
+                    </div>
+                    <div class="detail-group">
+                        <label>Reference ID:</label>
+                        <p id="modalRefId"></p>
+                    </div>
+                </div>
+                <div class="detail-group">
+                    <label>Additional Information:</label>
+                    <textarea class="form-input" id="modalNotes" rows="4" placeholder="Add notes or updates..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeDisasterModal()">Close</button>
+                <button class="btn-save">Update Status</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Sample disaster data
+    const disastersData = [
+        {
+            id: 1,
+            subject: 'Earthquake detected in California',
+            source: 'Seismic Sensors',
+            severity: 'high',
+            status: 'in-progress',
+            cause: 'Natural',
+            refId: 'EQ-CA-001'
+        },
+        {
+            id: 2,
+            subject: 'Chemical leak in industrial area',
+            source: 'Chemical Sensors',
+            severity: 'medium',
+            status: 'completed',
+            cause: 'Artificial',
+            refId: 'CL-IN-002'
+        },
+        {
+            id: 3,
+            subject: 'Flood warning in Mississippi',
+            source: 'Weather Stations',
+            severity: 'high',
+            status: 'in-progress',
+            cause: 'Natural',
+            refId: 'FL-MS-003'
+        },
+        {
+            id: 4,
+            subject: 'Wildfire in Colorado',
+            source: 'Satellite Imagery',
+            severity: 'high',
+            status: 'in-progress',
+            cause: 'Natural',
+            refId: 'WF-CO-004'
+        },
+        {
+            id: 5,
+            subject: 'Oil spill in Gulf of Mexico',
+            source: 'Maritime Sensors',
+            severity: 'medium',
+            status: 'in-progress',
+            cause: 'Artificial',
+            refId: 'OS-GM-005'
+        },
+        {
+            id: 6,
+            subject: 'Civil unrest in downtown area',
+            source: 'CCTV Cameras',
+            severity: 'low',
+            status: 'in-progress',
+            cause: 'Conflict',
+            refId: 'CR-DA-006'
+        },
+        {
+            id: 7,
+            subject: 'Hurricane warning in Florida',
+            source: 'Weather Satellites',
+            severity: 'high',
+            status: 'in-progress',
+            cause: 'Natural',
+            refId: 'HU-FL-007'
+        },
+        {
+            id: 8,
+            subject: 'Roadblock detected in highway',
+            source: 'Traffic Cameras',
+            severity: 'low',
+            status: 'completed',
+            cause: 'Artificial',
+            refId: 'RB-HW-008'
+        },
+        {
+            id: 9,
+            subject: 'Forest logging detected illegally',
+            source: 'Drones',
+            severity: 'medium',
+            status: 'in-progress',
+            cause: 'Conflict',
+            refId: 'FL-IL-009'
+        },
+        {
+            id: 10,
+            subject: 'Power outage in New York City',
+            source: 'Grid Monitoring',
+            severity: 'low',
+            status: 'in-progress',
+            cause: 'Artificial',
+            refId: 'PO-NY-010'
+        }
+    ];
+
+    let currentPage = 1;
+    let rowsPerPage = 100;
+    let currentData = [...disastersData];
+
+    // Render table
+    function renderTable() {
+        const tbody = document.getElementById('dmsTableBody');
+        tbody.innerHTML = '';
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = Math.min(start + rowsPerPage, currentData.length);
+        const pageData = currentData.slice(start, end);
+
+        pageData.forEach((disaster, index) => {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                    <td>${start + index + 1}</td>
+                    <td>
+                        <button class="action-btn" onclick="openDisasterModal(${disaster.id})">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </button>
+                    </td>
+                    <td class="subject-cell">${disaster.subject}</td>
+                    <td><span class="source-badge">${disaster.source}</span></td>
+                    <td><span class="severity-badge severity-${disaster.severity}">${disaster.severity.charAt(0).toUpperCase() + disaster.severity.slice(1)}</span></td>
+                    <td><span class="status-badge status-${disaster.status}">${disaster.status === 'in-progress' ? 'In Progress' : 'Completed'}</span></td>
+                    <td><span class="cause-badge">${disaster.cause}</span></td>
+                    <td class="ref-id-cell">${disaster.refId}</td>
+                    <td>
+                        <button class="delete-btn" onclick="deleteDisaster(${disaster.id})">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+
+            tbody.appendChild(row);
+        });
+
+        updatePagination();
+    }
+
+    // Update pagination info
+    function updatePagination() {
+        const start = (currentPage - 1) * rowsPerPage + 1;
+        const end = Math.min(start + rowsPerPage - 1, currentData.length);
+        document.getElementById('pageInfo').textContent = `${start}-${end} of ${currentData.length}`;
+
+        document.getElementById('prevPage').disabled = currentPage === 1;
+        document.getElementById('nextPage').disabled = end >= currentData.length;
+    }
+
+    // Pagination functions
+    function nextPage() {
+        if ((currentPage * rowsPerPage) < currentData.length) {
+            currentPage++;
+            renderTable();
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            renderTable();
+        }
+    }
+
+    function changeRowsPerPage() {
+        rowsPerPage = parseInt(document.getElementById('rowsPerPage').value);
+        currentPage = 1;
+        renderTable();
+    }
+
+    // Modal functions
+    function openDisasterModal(disasterId) {
+        const disaster = disastersData.find(d => d.id === disasterId);
+        if (!disaster) return;
+
+        document.getElementById('modalSubject').textContent = disaster.subject;
+        document.getElementById('modalSource').textContent = disaster.source;
+
+        const severityBadge = `<span class="severity-badge severity-${disaster.severity}">${disaster.severity.charAt(0).toUpperCase() + disaster.severity.slice(1)}</span>`;
+        document.getElementById('modalSeverity').innerHTML = severityBadge;
+
+        const statusBadge = `<span class="status-badge status-${disaster.status}">${disaster.status === 'in-progress' ? 'In Progress' : 'Completed'}</span>`;
+        document.getElementById('modalStatus').innerHTML = statusBadge;
+
+        document.getElementById('modalCause').textContent = disaster.cause;
+        document.getElementById('modalRefId').textContent = disaster.refId;
+
+        document.getElementById('disasterModal').classList.add('active');
+    }
+
+    function closeDisasterModal() {
+        document.getElementById('disasterModal').classList.remove('active');
+        document.getElementById('modalNotes').value = '';
+    }
+
+    // Delete disaster
+    function deleteDisaster(disasterId) {
+        if (confirm('Are you sure you want to delete this disaster record?')) {
+            const index = currentData.findIndex(d => d.id === disasterId);
+            if (index > -1) {
+                currentData.splice(index, 1);
+                renderTable();
+            }
+        }
+    }
+
+    // Close modal on outside click
+    document.getElementById('disasterModal').addEventListener('click', function (e) {
+        if (e.target === this) {
+            closeDisasterModal();
+        }
+    });
+
+    // Initialize on page load
+    window.addEventListener('load', function () {
+        renderTable();
+    });
+</script>

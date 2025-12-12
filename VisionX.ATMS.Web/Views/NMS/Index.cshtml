@@ -1,0 +1,285 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "NMS - Network Monitoring System";
+}
+
+<div class="nms-page">
+    <!-- Page Header -->
+    <div class="nms-header">
+        <div class="header-left">
+            <h3>Network Monitoring System (NMS)</h3>
+        </div>
+        <div class="header-right">
+            <div class="live-indicator">
+                <span class="live-dot"></span>
+                <span class="live-text">Live Server</span>
+                <span class="live-date">03/06/2025</span>
+                <span class="live-time" id="liveTime">03:48:25 PM</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Info -->
+    <div class="system-info">
+        <div class="info-line">
+            <span class="info-label">c38d448e3de5</span>
+            <span class="info-text">Alpine Linux 3.21.0 64bit / Linux 5.15.0-131-generic</span>
+            <span class="info-timestamp">2025-06-03 10:18:23 UTC</span>
+            <span class="info-uptime">Uptime: 2 days</span>
+        </div>
+    </div>
+
+    <!-- System Stats Grid -->
+    <div class="stats-grid">
+        <!-- CPU Stats -->
+        <div class="stat-card">
+            <div class="stat-header">
+                <span class="stat-label">CPU</span>
+                <span class="stat-value">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%; background: #10b981;"></div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <span class="stat-label">Intel(R) Xeon(R) Silver 4316 CPU  2.30GHz</span>
+            </div>
+            <div class="cpu-details">
+                <div class="cpu-item">
+                    <span>CPU</span>
+                    <div class="cpu-bar"><div class="cpu-bar-fill" style="width: 0%;"></div></div>
+                    <span>0%</span>
+                </div>
+                <div class="cpu-item">
+                    <span>MEM</span>
+                    <div class="cpu-bar"><div class="cpu-bar-fill" style="width: 8.2%; background: #10b981;"></div></div>
+                    <span>8.2%</span>
+                </div>
+                <div class="cpu-item">
+                    <span>LOAD</span>
+                    <div class="cpu-bar"><div class="cpu-bar-fill" style="width: 5.9%; background: #10b981;"></div></div>
+                    <span>5.9%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Stats -->
+        <div class="stat-card">
+            <div class="stat-header">
+                <span class="stat-label">MEM</span>
+                <span class="stat-value">8.2%</span>
+            </div>
+            <div class="mem-grid">
+                <div class="mem-item"><span>idle:</span><span>0%</span></div>
+                <div class="mem-item"><span>active:</span><span>788M</span></div>
+                <div class="mem-item"><span>user:</span><span>0%</span></div>
+                <div class="mem-item"><span>iowait:</span><span>0%</span></div>
+                <div class="mem-item"><span>total:</span><span>23.5G</span></div>
+                <div class="mem-item"><span>inactive:</span><span>1.89G</span></div>
+                <div class="mem-item"><span>nice:</span><span>0%</span></div>
+                <div class="mem-item"><span>steal:</span><span>0%</span></div>
+                <div class="mem-item"><span>used:</span><span>1.9G</span></div>
+                <div class="mem-item"><span>buffers:</span><span>103M</span></div>
+                <div class="mem-item"><span>system:</span><span>0%</span></div>
+                <div class="mem-item"><span>free:</span><span>21.5G</span></div>
+                <div class="mem-item"><span>cached:</span><span>1.56G</span></div>
+            </div>
+        </div>
+
+        <!-- Swap Stats -->
+        <div class="stat-card">
+            <div class="stat-header">
+                <span class="stat-label">SWAP</span>
+                <span class="stat-value">0%</span>
+            </div>
+            <div class="mem-grid">
+                <div class="mem-item"><span>total:</span><span>0B</span></div>
+                <div class="mem-item"><span>used:</span><span>0B</span></div>
+                <div class="mem-item"><span>free:</span><span>0B</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Network Section -->
+    <div class="network-section">
+        <h4 class="section-title">NETWORK</h4>
+        <div class="network-grid">
+            <div class="network-item">
+                <span class="net-label">eth0</span>
+                <span class="net-value">Rx/s: 0kb</span>
+                <span class="net-value">Tx/s: 86kb</span>
+            </div>
+            <div class="network-item">
+                <span class="net-label">lo</span>
+                <span class="net-value">280b</span>
+                <span class="net-value">280b</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disk I/O Section -->
+    <div class="disk-section">
+        <h4 class="section-title">DISK I/O</h4>
+        <div class="disk-grid">
+            <div class="disk-item">
+                <span class="disk-label">sda</span>
+                <span class="disk-value">R/s: 0</span>
+                <span class="disk-value">W/s: 61K</span>
+            </div>
+            <div class="disk-item">
+                <span class="disk-label">sda1</span>
+                <span class="disk-value">0</span>
+                <span class="disk-value">0</span>
+            </div>
+            <div class="disk-item">
+                <span class="disk-label">sda2</span>
+                <span class="disk-value">0</span>
+                <span class="disk-value">61K</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- File System Section -->
+    <div class="filesystem-section">
+        <h4 class="section-title">FILE SYSTEM</h4>
+        <table class="fs-table">
+            <thead>
+                <tr>
+                    <th>Path</th>
+                    <th>Used</th>
+                    <th>Total</th>
+                    <th>Usage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>/etc/resolv.conf</td>
+                    <td>50.4G</td>
+                    <td>394G</td>
+                    <td>
+                        <div class="usage-bar">
+                            <div class="usage-fill" style="width: 13%;"></div>
+                        </div>
+                        <span>13%</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>/etc/hostname</td>
+                    <td>50.4G</td>
+                    <td>394G</td>
+                    <td>
+                        <div class="usage-bar">
+                            <div class="usage-fill" style="width: 13%;"></div>
+                        </div>
+                        <span>13%</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(/dev/sda2)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>/etc/hosts</td>
+                    <td>50.4G</td>
+                    <td>394G</td>
+                    <td>
+                        <div class="usage-bar">
+                            <div class="usage-fill" style="width: 13%;"></div>
+                        </div>
+                        <span>13%</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(/dev/sda2)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Containers Section -->
+    <div class="containers-section">
+        <h4 class="section-title">CONTAINERS 17 sorted by CPU consumption</h4>
+        <table class="containers-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Uptime</th>
+                    <th>CPU%</th>
+                    <th>MEM</th>
+                    <th>MAX</th>
+                    <th>IOR</th>
+                    <th>IOW</th>
+                    <th>RX</th>
+                    <th>TX</th>
+                    <th>Command</th>
+                </tr>
+            </thead>
+            <tbody id="containersBody">
+                <!-- Sample data - will be populated by JS -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Sample container data
+    const containersData = [
+        { name: 'postgres_database', status: 'running', uptime: 'a month', cpu: 4.7, mem: '359M', max: '23.5G', ior: 0, iow: '16K', rx: '42kb', tx: '70kb', command: 'docker-entrypoi' },
+        { name: 'laughing_carson', status: 'running', uptime: '2 months', cpu: 1.7, mem: '77.6M', max: '23.5G', ior: 0, iow: 0, rx: '2kb', tx: '89kb', command: '/bin/sh -c /ver' },
+        { name: 'ims', status: 'running', uptime: 'a week', cpu: 0.9, mem: '26.8M', max: '23.5G', ior: 0, iow: 0, rx: 'NaNb', tx: 'NaNb', command: '/app/bin/admin' },
+        { name: 'wis-bgproc', status: 'running', uptime: '0.3', cpu: 0.3, mem: '15.2M', max: '23.5G', ior: 0, iow: 0, rx: 'NaNb', tx: 'NaNb', command: '/app/bin' },
+        { name: 'atv', status: 'running', uptime: '0.2', cpu: 0.2, mem: '16.9M', max: '23.5G', ior: 0, iow: 0, rx: 'NaNb', tx: 'NaNb', command: '/app/bin' },
+        { name: 'wis', status: 'running', uptime: '0.2', cpu: 0.2, mem: '37.3M', max: '23.5G', ior: 0, iow: 0, rx: 'NaNb', tx: 'NaNb', command: '/app/bin' },
+        { name: 'alarms', status: 'running', uptime: '0.1', cpu: 0.1, mem: '32.6M', max: '23.5G', ior: 0, iow: 0, rx: 'NaNb', tx: 'NaNb', command: '/app/bin' },
+        { name: 'vms', status: 'running', uptime: '0', cpu: 0, mem: '18.5M', max: '23.5G', ior: 0, iow: 0, rx: 'NaNb', tx: 'NaNb', command: '/app/bin' },
+        { name: 'dashboard', status: 'running', uptime: '0', cpu: 0, mem: '80.6M', max: '23.5G', ior: 0, iow: 0, rx: 'NaNb', tx: 'NaNb', command: '/app/bin' },
+        { name: 'atcc', status: 'running', uptime: '0', cpu: 0, mem: '9.99M', max: '23.5G', ior: 0, iow: 0, rx: 'NaNb', tx: 'NaNb', command: '/app/bin' },
+        { name: 'ecb', status: 'running', uptime: '0', cpu: 0, mem: '8.74M', max: '23.5G', ior: 0, iow: 0, rx: 'NaNb', tx: 'NaNb', command: '/app/bin' }
+    ];
+
+    // Render containers table
+    function renderContainers() {
+        const tbody = document.getElementById('containersBody');
+        tbody.innerHTML = '';
+
+        containersData.forEach(container => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="container-name">${container.name}</td>
+                <td><span class="status-badge status-${container.status}">${container.status}</span></td>
+                <td>${container.uptime}</td>
+                <td>${container.cpu}</td>
+                <td>${container.mem}</td>
+                <td>${container.max}</td>
+                <td>${container.ior}</td>
+                <td>${container.iow}</td>
+                <td>${container.rx}</td>
+                <td>${container.tx}</td>
+                <td class="command-cell">${container.command}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    // Update live time
+    function updateLiveTime() {
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('en-US', { hour12: true });
+        document.getElementById('liveTime').textContent = timeStr;
+    }
+
+    // Initialize
+    window.addEventListener('load', function() {
+        renderContainers();
+        updateLiveTime();
+        setInterval(updateLiveTime, 1000);
+    });
+</script>

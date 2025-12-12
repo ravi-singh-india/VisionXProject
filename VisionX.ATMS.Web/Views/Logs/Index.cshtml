@@ -1,0 +1,240 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "Logs";
+}
+
+<div class="logs-page">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h3>Logs</h3>
+        <div class="header-actions">
+            <button class="btn-filter" id="btnFilter">
+                <i class="fa-solid fa-filter"></i> Filter
+            </button>
+            <button class="btn-export">
+                <i class="fa-solid fa-file-pdf"></i> PDF
+            </button>
+            <button class="btn-export">
+                <i class="fa-solid fa-download"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Logs Table -->
+    <div class="logs-table-container">
+        <table class="logs-table">
+            <thead>
+                <tr>
+                    <th>Generation Date</th>
+                    <th>Subject</th>
+                    <th>Logs Type</th>
+                    <th>Source</th>
+                    <th>Severity</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="logsTableBody">
+                <!-- Data will be populated by JavaScript -->
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="table-pagination">
+            <div class="pagination-left">
+                <span>Rows per page:</span>
+                <select class="rows-select" id="rowsPerPage" onchange="changeRowsPerPage()">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100" selected>100</option>
+                </select>
+            </div>
+            <div class="pagination-center">
+                <span id="pageInfo">1-10 of 10</span>
+            </div>
+            <div class="pagination-right">
+                <button class="page-btn" id="prevPage" onclick="prevPage()">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="page-btn" id="nextPage" onclick="nextPage()">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Sample logs data
+    const logsData = [
+        {
+            id: 1,
+            date: '06/02/2025 16:58:20 AM',
+            subject: '192.168.154.5-02, edgebox 2, Connection Failed',
+            type: 'Alert',
+            source: 'Edgebox',
+            severity: 'High',
+            status: 'In Progress'
+        },
+        {
+            id: 2,
+            date: '06/01/2025 08:18:59 PM',
+            subject: '192.168.154.37, Destination host unreachable/is not pinging',
+            type: 'Alert',
+            source: 'cctv',
+            severity: 'High',
+            status: 'In Progress'
+        },
+        {
+            id: 3,
+            date: '06/01/2025 08:18:38 PM',
+            subject: '192.168.154.36, Destination host unreachable/is not pinging',
+            type: 'Alert',
+            source: 'cctv',
+            severity: 'High',
+            status: 'In Progress'
+        },
+        {
+            id: 4,
+            date: '06/01/2025 08:18:28 PM',
+            subject: '192.168.154.43, Destination host unreachable/is not pinging',
+            type: 'Alert',
+            source: 'VIDES',
+            severity: 'High',
+            status: 'In Progress'
+        },
+        {
+            id: 5,
+            date: '06/01/2025 08:18:17 PM',
+            subject: '192.168.2.243, Destination host unreachable/is not pinging',
+            type: 'Alert',
+            source: 'HTDS',
+            severity: 'High',
+            status: 'In Progress'
+        },
+        {
+            id: 6,
+            date: '06/01/2025 08:18:58 PM',
+            subject: '192.168.155.33, Destination host unreachable/is not pinging',
+            type: 'Alert',
+            source: 'cctv',
+            severity: 'High',
+            status: 'In Progress'
+        },
+        {
+            id: 7,
+            date: '06/01/2025 08:18:47 PM',
+            subject: '192.168.154.35, Destination host unreachable/is not pinging',
+            type: 'Alert',
+            source: 'cctv',
+            severity: 'High',
+            status: 'In Progress'
+        },
+        {
+            id: 8,
+            date: '20/10/2024 10:36:45 AM',
+            subject: 'V1425, Destination host unreachable/is not pinging',
+            type: 'Alert',
+            source: 'vms',
+            severity: 'High',
+            status: 'In Progress'
+        },
+        {
+            id: 9,
+            date: '20/10/2024 09:41:02 AM',
+            subject: '192.168.161.82, Destination host unreachable/is not pinging',
+            type: 'Alert',
+            source: 'vms',
+            severity: 'High',
+            status: 'In Progress'
+        },
+        {
+            id: 10,
+            date: '22/10/2024 03:53:56 PM',
+            subject: '12, Destination host unreachable/is not pinging',
+            type: 'Alert',
+            source: 'vms',
+            severity: 'High',
+            status: 'In Progress'
+        }
+    ];
+
+    let currentPage = 1;
+    let rowsPerPage = 100;
+    let filteredData = [...logsData];
+
+    // Render logs table
+    function renderLogs() {
+        const tbody = document.getElementById('logsTableBody');
+        tbody.innerHTML = '';
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = Math.min(start + rowsPerPage, filteredData.length);
+        const pageLogs = filteredData.slice(start, end);
+
+        pageLogs.forEach(log => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                    <td class="date-cell">${log.date}</td>
+                    <td class="subject-cell">${log.subject}</td>
+                    <td><span class="type-badge">${log.type}</span></td>
+                    <td><span class="source-badge source-${log.source.toLowerCase()}">${log.source}</span></td>
+                    <td><span class="severity-badge severity-${log.severity.toLowerCase()}">${log.severity}</span></td>
+                    <td><span class="status-badge status-${log.status.toLowerCase().replace(' ', '-')}">${log.status}</span></td>
+                `;
+            tbody.appendChild(row);
+        });
+
+        updatePagination();
+    }
+
+    // Update pagination
+    function updatePagination() {
+        const start = (currentPage - 1) * rowsPerPage + 1;
+        const end = Math.min(start + rowsPerPage - 1, filteredData.length);
+        document.getElementById('pageInfo').textContent = `${start}-${end} of ${filteredData.length}`;
+
+        document.getElementById('prevPage').disabled = currentPage === 1;
+        document.getElementById('nextPage').disabled = end >= filteredData.length;
+    }
+
+    // Pagination functions
+    function nextPage() {
+        if ((currentPage * rowsPerPage) < filteredData.length) {
+            currentPage++;
+            renderLogs();
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            renderLogs();
+        }
+    }
+
+    function changeRowsPerPage() {
+        rowsPerPage = parseInt(document.getElementById('rowsPerPage').value);
+        currentPage = 1;
+        renderLogs();
+    }
+
+    // Export to PDF (placeholder)
+    document.querySelectorAll('.btn-export').forEach(btn => {
+        btn.addEventListener('click', function () {
+            if (this.textContent.includes('PDF')) {
+                alert('Exporting logs to PDF...');
+            } else {
+                alert('Downloading logs...');
+            }
+        });
+    });
+
+    // Filter button (placeholder)
+    document.getElementById('btnFilter')?.addEventListener('click', function () {
+        alert('Filter functionality - Add date range, source, severity filters here');
+    });
+
+    // Initialize on page load
+    window.addEventListener('load', renderLogs);
+</script>

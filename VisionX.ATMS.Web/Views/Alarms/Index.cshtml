@@ -1,0 +1,319 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "Alarms";
+}
+
+<div class="alarms-page">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h3>Alarms</h3>
+        <div class="header-actions">
+            <button class="btn-filter" id="btnFilter">
+                <i class="fa-solid fa-filter"></i> Filter
+            </button>
+            <button class="btn-export">
+                <i class="fa-solid fa-download"></i> Export
+            </button>
+            <button class="btn-export">
+                <i class="fa-solid fa-download"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Filters Section -->
+    <div class="filters-section" id="filtersSection">
+        <h6>Select Filters to Search</h6>
+        <div class="filters-grid">
+            <div class="filter-group">
+                <select class="filter-select" id="alarmType">
+                    <option value="">Alarm Type</option>
+                    <option value="host_unreachable">Host Unreachable</option>
+                    <option value="storage">Storage Alert</option>
+                    <option value="network">Network Issue</option>
+                    <option value="system">System Alert</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <select class="filter-select" id="source">
+                    <option value="">Source</option>
+                    <option value="cctv">CCTV</option>
+                    <option value="vms">VMS</option>
+                    <option value="system">SYSTEM</option>
+                    <option value="wis">WIS</option>
+                    <option value="ecb">ECB</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <select class="filter-select" id="severity">
+                    <option value="">Severity Level</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <input type="date" class="filter-input" id="startDate" placeholder="Start Date">
+            </div>
+
+            <div class="filter-group">
+                <input type="date" class="filter-input" id="endDate" placeholder="End Date">
+            </div>
+
+            <div class="filter-actions">
+                <button class="btn-reset" onclick="resetFilters()">
+                    <i class="fa-solid fa-rotate-right"></i> Reset Filters
+                </button>
+                <button class="btn-search" onclick="searchAlarms()">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alarms Table -->
+    <div class="alarms-table-container">
+        <table class="alarms-data-table" id="alarmsTable">
+            <thead>
+                <tr>
+                    <th>S. No</th>
+                    <th>Open</th>
+                    <th>Acknowledge</th>
+                    <th>Subject</th>
+                    <th>Alarm Type</th>
+                    <th>Generation Date</th>
+                    <th>Source</th>
+                    <th>Severity</th>
+                    <th>Status</th>
+                    <th>Ref Id</th>
+                </tr>
+            </thead>
+            <tbody id="alarmsTableBody">
+                <!-- Data will be populated by JavaScript -->
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="table-pagination">
+            <div class="pagination-left">
+                <span>Rows per page:</span>
+                <select class="rows-select" id="rowsPerPage" onchange="changeRowsPerPage()">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100" selected>100</option>
+                </select>
+            </div>
+            <div class="pagination-center">
+                <span id="pageInfo">1-11 of 11</span>
+            </div>
+            <div class="pagination-right">
+                <button class="page-btn" id="prevPage" onclick="prevPage()">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="page-btn" id="nextPage" onclick="nextPage()">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Sample alarm data
+    const alarmsData = [
+        {
+            id: 1,
+            subject: '192.168.154.35, Destination host unreachable/is not pinging',
+            alarmType: 'host_unreachable',
+            date: '06/01/2025 08:18:47 PM',
+            source: 'CCTV',
+            severity: 'high',
+            status: 'In Progress',
+            refId: 'AL-CCTV-1731677482'
+        },
+        {
+            id: 2,
+            subject: '192.168.161.88, Destination host unreachable/is not pinging',
+            alarmType: 'host_unreachable',
+            date: '27/09/2024 06:20:03 PM',
+            source: 'VMS',
+            severity: 'high',
+            status: 'Hold',
+            refId: 'AL-VMS-1727434403'
+        },
+        {
+            id: 3,
+            subject: 'Free up Storage , Disk Usages : 13.33',
+            alarmType: 'storage',
+            date: '17/08/2024 03:15:01 PM',
+            source: 'SYSTEM',
+            severity: 'low',
+            status: 'Completed',
+            refId: 'AL-SYS-1723887901'
+        },
+        {
+            id: 4,
+            subject: '192.168.161.50, Destination host unreachable/is not pinging',
+            alarmType: 'host_unreachable',
+            date: '08/08/2024 05:18:18 AM',
+            source: 'VMS',
+            severity: 'high',
+            status: 'Completed',
+            refId: 'AL-SYS-1723094298'
+        },
+        {
+            id: 5,
+            subject: '192.168.161.125, Destination host unreachable/is not pinging',
+            alarmType: 'host_unreachable',
+            date: '08/08/2024 05:17:48 AM',
+            source: 'VMS',
+            severity: 'high',
+            status: 'In Progress',
+            refId: 'AL-SYS-1723094268'
+        },
+        {
+            id: 6,
+            subject: '192.168.161.3, Destination host reachable',
+            alarmType: 'network',
+            date: '15/06/2024 10:56:09 PM',
+            source: 'SYSTEM',
+            severity: 'low',
+            status: 'Completed',
+            refId: 'AL-SYS-1718492969'
+        },
+        {
+            id: 7,
+            subject: '192.168.161.2, Destination host reachable',
+            alarmType: 'network',
+            date: '15/06/2024 10:56:08 PM',
+            source: 'SYSTEM',
+            severity: 'low',
+            status: 'Completed',
+            refId: 'AL-SYS-1718492968'
+        },
+        {
+            id: 8,
+            subject: '192.168.161.3, Destination not reachable',
+            alarmType: 'host_unreachable',
+            date: '15/06/2024 10:54:35 PM',
+            source: 'SYSTEM',
+            severity: 'low',
+            status: 'Completed',
+            refId: 'AL-SYS-1718492875'
+        }
+    ];
+
+    let currentPage = 1;
+    let rowsPerPage = 100;
+    let filteredData = [...alarmsData];
+
+    // Initialize table
+    function renderTable() {
+        const tbody = document.getElementById('alarmsTableBody');
+        tbody.innerHTML = '';
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = Math.min(start + rowsPerPage, filteredData.length);
+        const pageData = filteredData.slice(start, end);
+
+        pageData.forEach((alarm, index) => {
+            const row = document.createElement('tr');
+            row.className = alarm.severity === 'low' && alarm.status === 'Completed' ? 'row-success' : '';
+
+            row.innerHTML = `
+                    <td>${start + index + 1}</td>
+                    <td><button class="icon-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></button></td>
+                    <td><button class="icon-btn"><i class="fa-solid fa-check"></i></button></td>
+                    <td class="subject-cell">${alarm.subject}</td>
+                    <td><i class="fa-solid fa-bell ${alarm.severity === 'low' ? 'alarm-icon-green' : 'alarm-icon-gray'}"></i></td>
+                    <td>${alarm.date}</td>
+                    <td><span class="source-badge source-${alarm.source.toLowerCase()}">${alarm.source}</span></td>
+                    <td><span class="severity-badge severity-${alarm.severity}">${alarm.severity.charAt(0).toUpperCase() + alarm.severity.slice(1)}</span></td>
+                    <td><span class="status-badge status-${alarm.status.toLowerCase().replace(' ', '-')}">${alarm.status}</span></td>
+                    <td class="ref-id-cell">${alarm.refId}</td>
+                `;
+
+            tbody.appendChild(row);
+        });
+
+        updatePagination();
+    }
+
+    function updatePagination() {
+        const start = (currentPage - 1) * rowsPerPage + 1;
+        const end = Math.min(start + rowsPerPage - 1, filteredData.length);
+        document.getElementById('pageInfo').textContent = `${start}-${end} of ${filteredData.length}`;
+
+        document.getElementById('prevPage').disabled = currentPage === 1;
+        document.getElementById('nextPage').disabled = end >= filteredData.length;
+    }
+
+    function nextPage() {
+        if ((currentPage * rowsPerPage) < filteredData.length) {
+            currentPage++;
+            renderTable();
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            renderTable();
+        }
+    }
+
+    function changeRowsPerPage() {
+        rowsPerPage = parseInt(document.getElementById('rowsPerPage').value);
+        currentPage = 1;
+        renderTable();
+    }
+
+    function searchAlarms() {
+        const alarmType = document.getElementById('alarmType').value;
+        const source = document.getElementById('source').value;
+        const severity = document.getElementById('severity').value;
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+
+        filteredData = alarmsData.filter(alarm => {
+            let match = true;
+
+            if (alarmType && alarm.alarmType !== alarmType) match = false;
+            if (source && alarm.source.toLowerCase() !== source.toLowerCase()) match = false;
+            if (severity && alarm.severity !== severity) match = false;
+
+            // Date filtering logic can be added here
+
+            return match;
+        });
+
+        currentPage = 1;
+        renderTable();
+    }
+
+    function resetFilters() {
+        document.getElementById('alarmType').value = '';
+        document.getElementById('source').value = '';
+        document.getElementById('severity').value = '';
+        document.getElementById('startDate').value = '';
+        document.getElementById('endDate').value = '';
+
+        filteredData = [...alarmsData];
+        currentPage = 1;
+        renderTable();
+    }
+
+    // Toggle filter section
+    document.getElementById('btnFilter').addEventListener('click', function () {
+        const filtersSection = document.getElementById('filtersSection');
+        filtersSection.style.display = filtersSection.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Initialize on page load
+    window.addEventListener('load', function () {
+        renderTable();
+    });
+</script>

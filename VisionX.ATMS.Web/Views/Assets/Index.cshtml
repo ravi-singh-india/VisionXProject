@@ -1,0 +1,323 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "Manage Assets";
+}
+
+<div class="assets-page">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h3>Manage Assets</h3>
+        <div class="header-actions">
+            <select class="asset-type-select" id="assetTypeFilter">
+                <option value="">Variable Message Sign [VMS]</option>
+                <option value="ATCC">ATCC</option>
+                <option value="ECB">ECB</option>
+                <option value="WIS">WIS</option>
+                <option value="CCTV">CCTV</option>
+                <option value="VIDS">VIDS</option>
+                <option value="PWIM">PWIM</option>
+                <option value="HTDS">HTDS</option>
+                <option value="EDGEBOX">EDGEBOX</option>
+            </select>
+            <button class="btn-create" onclick="openAddAssetModal()">
+                <i class="fa-solid fa-plus"></i> Add Asset
+            </button>
+        </div>
+    </div>
+
+    <!-- Assets Tabs -->
+    <div class="assets-tabs">
+        <button class="asset-tab active" data-tab="vms" onclick="switchAssetTab('vms')">VMS</button>
+        <button class="asset-tab" data-tab="atcc" onclick="switchAssetTab('atcc')">ATCC</button>
+        <button class="asset-tab" data-tab="ecb" onclick="switchAssetTab('ecb')">ECB</button>
+        <button class="asset-tab" data-tab="wis" onclick="switchAssetTab('wis')">WIS</button>
+        <button class="asset-tab" data-tab="cctv" onclick="switchAssetTab('cctv')">CCTV</button>
+        <button class="asset-tab" data-tab="vids" onclick="switchAssetTab('vids')">VIDS</button>
+        <button class="asset-tab" data-tab="pwim" onclick="switchAssetTab('pwim')">PWIM</button>
+        <button class="asset-tab" data-tab="htds" onclick="switchAssetTab('htds')">HTDS</button>
+        <button class="asset-tab" data-tab="edgebox" onclick="switchAssetTab('edgebox')">EDGEBOX</button>
+    </div>
+
+    <!-- Assets Table -->
+    <div class="assets-table-container">
+        <table class="assets-table">
+            <thead>
+                <tr>
+                    <th>S. No</th>
+                    <th>Edit</th>
+                    <th>Status</th>
+                    <th>Device Id</th>
+                    <th>Device Name</th>
+                    <th>Asset Model</th>
+                    <th>Listing Date</th>
+                    <th>IP Address</th>
+                    <th>Port</th>
+                    <th>Chainage</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody id="assetsTableBody">
+                <!-- Data will be populated by JavaScript -->
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="table-pagination">
+            <div class="pagination-left">
+                <span>Rows per page:</span>
+                <select class="rows-select" id="rowsPerPage" onchange="changeRowsPerPage()">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100" selected>100</option>
+                </select>
+            </div>
+            <div class="pagination-center">
+                <span id="pageInfo">1-14 of 14</span>
+            </div>
+            <div class="pagination-right">
+                <button class="page-btn" id="prevPage" onclick="prevPage()">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="page-btn" id="nextPage" onclick="nextPage()">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Asset Modal -->
+    <div class="asset-modal" id="assetModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="modalTitle">Add New Asset</h4>
+                <button class="btn-close" onclick="closeAssetModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Device ID <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="deviceId" placeholder="Enter device ID">
+                    </div>
+                    <div class="form-group">
+                        <label>Device Name <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="deviceName" placeholder="Enter device name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Asset Model</label>
+                        <input type="text" class="form-input" id="assetModel" placeholder="Enter asset model">
+                    </div>
+                    <div class="form-group">
+                        <label>Listing Date</label>
+                        <input type="date" class="form-input" id="listingDate">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>IP Address <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="ipAddress" placeholder="192.168.x.x">
+                    </div>
+                    <div class="form-group">
+                        <label>Port</label>
+                        <input type="text" class="form-input" id="port" placeholder="Enter port">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Chainage</label>
+                        <input type="text" class="form-input" id="chainage" placeholder="Enter chainage">
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" class="form-input" id="location" placeholder="Enter location">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeAssetModal()">Cancel</button>
+                <button class="btn-save" onclick="saveAsset()">
+                    <i class="fa-solid fa-save"></i> Save Asset
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Sample assets data
+    const assetsData = {
+        vms: [
+            { id: 4, deviceId: '214.80 L', deviceName: '214.80 L', model: 'PHOTON PLAY MAC', listingDate: '01/01/2023', ip: '192.168.161.2', port: '7006877', chainage: '214.80 L', location: 'R', status: 'offline' },
+            { id: 5, deviceId: '214.80 R', deviceName: '214.80 R', model: 'PHOTOPLAY MAC', listingDate: '01/01/2023', ip: '192.168.161.21', port: '7006', chainage: '214.80 R', location: 'R', status: 'offline' },
+            { id: 6, deviceId: '243.30 R', deviceName: '243.30 R', model: 'PHOTOPLAY IP B', listingDate: '01/01/2023', ip: '192.168.161.67', port: '7006', chainage: '243.30 R', location: 'R', status: 'offline' },
+            { id: 7, deviceId: '223.33 L', deviceName: '223.33 L', model: 'PHOTOPLAY MAC', listingDate: '01/01/2023', ip: '192.168.161.34', port: '7006', chainage: '223.33 L', location: 'L', status: 'offline' }
+        ],
+        atcc: [
+            { id: 1, deviceId: 'TP1_LHS', deviceName: 'TP1_LHS', model: 'ATCC Model X', listingDate: '01/01/2023', ip: '192.168.155.61', port: 'N/A', chainage: '194+770 L', location: 'Left', status: 'online' }
+        ],
+        ecb: [
+            { id: 1, deviceId: 'ECB-01', deviceName: 'ECB Station 1', model: 'ECB-Standard', listingDate: '01/01/2023', ip: '192.168.200.10', port: '5000', chainage: 'N/A', location: 'Station', status: 'online' }
+        ],
+        wis: [
+            { id: 1, deviceId: 'WIS-101', deviceName: 'WIS-101', model: 'Weather Station V2', listingDate: '01/01/2023', ip: '192.168.203.32', port: '30000', chainage: 'Ch.14+640', location: 'Central', status: 'online' }
+        ]
+    };
+
+    let currentTab = 'vms';
+    let currentPage = 1;
+    let rowsPerPage = 100;
+
+    // Render assets table
+    function renderAssets() {
+        const tbody = document.getElementById('assetsTableBody');
+        tbody.innerHTML = '';
+
+        const assets = assetsData[currentTab] || [];
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = Math.min(start + rowsPerPage, assets.length);
+        const pageAssets = assets.slice(start, end);
+
+        pageAssets.forEach((asset, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                    <td>${start + index + 1}</td>
+                    <td>
+                        <button class="edit-btn" onclick="editAsset(${asset.id})">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                    </td>
+                    <td><span class="status-badge status-${asset.status}">${asset.status}</span></td>
+                    <td>${asset.deviceId}</td>
+                    <td>${asset.deviceName}</td>
+                    <td>${asset.model}</td>
+                    <td>${asset.listingDate}</td>
+                    <td>${asset.ip}</td>
+                    <td>${asset.port}</td>
+                    <td>${asset.chainage}</td>
+                    <td>${asset.location}</td>
+                `;
+            tbody.appendChild(row);
+        });
+
+        updatePagination(assets.length);
+    }
+
+    // Switch asset tab
+    function switchAssetTab(tab) {
+        currentTab = tab;
+        currentPage = 1;
+
+        // Update active tab
+        document.querySelectorAll('.asset-tab').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+
+        renderAssets();
+    }
+
+    // Update pagination
+    function updatePagination(total) {
+        const start = (currentPage - 1) * rowsPerPage + 1;
+        const end = Math.min(start + rowsPerPage - 1, total);
+        document.getElementById('pageInfo').textContent = `${start}-${end} of ${total}`;
+
+        document.getElementById('prevPage').disabled = currentPage === 1;
+        document.getElementById('nextPage').disabled = end >= total;
+    }
+
+    // Pagination functions
+    function nextPage() {
+        const total = (assetsData[currentTab] || []).length;
+        if ((currentPage * rowsPerPage) < total) {
+            currentPage++;
+            renderAssets();
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            renderAssets();
+        }
+    }
+
+    function changeRowsPerPage() {
+        rowsPerPage = parseInt(document.getElementById('rowsPerPage').value);
+        currentPage = 1;
+        renderAssets();
+    }
+
+    // Open add asset modal
+    function openAddAssetModal() {
+        document.getElementById('modalTitle').textContent = 'Add New Asset';
+        clearAssetForm();
+        document.getElementById('assetModal').classList.add('active');
+    }
+
+    // Edit asset
+    function editAsset(assetId) {
+        const assets = assetsData[currentTab] || [];
+        const asset = assets.find(a => a.id === assetId);
+
+        if (asset) {
+            document.getElementById('modalTitle').textContent = 'Edit Asset';
+            document.getElementById('deviceId').value = asset.deviceId;
+            document.getElementById('deviceName').value = asset.deviceName;
+            document.getElementById('assetModel').value = asset.model;
+            document.getElementById('listingDate').value = asset.listingDate.split('/').reverse().join('-');
+            document.getElementById('ipAddress').value = asset.ip;
+            document.getElementById('port').value = asset.port;
+            document.getElementById('chainage').value = asset.chainage;
+            document.getElementById('location').value = asset.location;
+
+            document.getElementById('assetModal').classList.add('active');
+        }
+    }
+
+    // Save asset
+    function saveAsset() {
+        const deviceId = document.getElementById('deviceId').value.trim();
+        const deviceName = document.getElementById('deviceName').value.trim();
+        const ipAddress = document.getElementById('ipAddress').value.trim();
+
+        if (!deviceId || !deviceName || !ipAddress) {
+            alert('Please fill in all required fields');
+            return;
+        }
+
+        alert('Asset saved successfully');
+        closeAssetModal();
+    }
+
+    // Clear form
+    function clearAssetForm() {
+        document.getElementById('deviceId').value = '';
+        document.getElementById('deviceName').value = '';
+        document.getElementById('assetModel').value = '';
+        document.getElementById('listingDate').value = '';
+        document.getElementById('ipAddress').value = '';
+        document.getElementById('port').value = '';
+        document.getElementById('chainage').value = '';
+        document.getElementById('location').value = '';
+    }
+
+    // Close modal
+    function closeAssetModal() {
+        document.getElementById('assetModal').classList.remove('active');
+    }
+
+    // Close modal on outside click
+    document.getElementById('assetModal')?.addEventListener('click', function (e) {
+        if (e.target === this) {
+            closeAssetModal();
+        }
+    });
+
+    // Initialize on page load
+    window.addEventListener('load', renderAssets);
+</script>

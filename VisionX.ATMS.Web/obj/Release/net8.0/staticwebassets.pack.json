@@ -1,0 +1,341 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\obj\\Release\\net8.0\\scopedcss\\projectbundle\\VisionX.ATMS.Web.bundle.scp.css",
+      "PackagePath": "staticwebassets\\VisionX.ATMS.Web.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\css\\alarms.css",
+      "PackagePath": "staticwebassets\\css\\alarms.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\css\\analytics.css",
+      "PackagePath": "staticwebassets\\css\\analytics.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\css\\dashboard - Copy.css",
+      "PackagePath": "staticwebassets\\css\\dashboard - Copy.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\css\\dashboard.css",
+      "PackagePath": "staticwebassets\\css\\dashboard.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\css\\dms.css",
+      "PackagePath": "staticwebassets\\css\\dms.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\css\\gismap.css",
+      "PackagePath": "staticwebassets\\css\\gismap.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\css\\nms.css",
+      "PackagePath": "staticwebassets\\css\\nms.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\css\\planner.css",
+      "PackagePath": "staticwebassets\\css\\planner.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\css\\settings.css",
+      "PackagePath": "staticwebassets\\css\\settings.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\css\\vasd.css",
+      "PackagePath": "staticwebassets\\css\\vasd.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\images\\msg1.jpg",
+      "PackagePath": "staticwebassets\\images\\msg1.jpg"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\images\\visionx_logo.png",
+      "PackagePath": "staticwebassets\\images\\visionx_logo.png"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\images\\visionx_logo_S.png",
+      "PackagePath": "staticwebassets\\images\\visionx_logo_S.png"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\images\\visionx_logo_XXS.png",
+      "PackagePath": "staticwebassets\\images\\visionx_logo_XXS.png"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\images\\visionx_logo_big.png",
+      "PackagePath": "staticwebassets\\images\\visionx_logo_big.png"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\images\\visionx_logo_flat.png",
+      "PackagePath": "staticwebassets\\images\\visionx_logo_flat.png"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\images\\visionx_logo_small_XS.png",
+      "PackagePath": "staticwebassets\\images\\visionx_logo_small_XS.png"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\js\\vasd.js",
+      "PackagePath": "staticwebassets\\js\\vasd.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\R&D\\VisionXProjects\\ATMS\\VisionX\\VisionX.ATMS.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.VisionX.ATMS.Web.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.build.VisionX.ATMS.Web.props",
+      "PackagePath": "build\\VisionX.ATMS.Web.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.VisionX.ATMS.Web.props",
+      "PackagePath": "buildMultiTargeting\\VisionX.ATMS.Web.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildTransitive.VisionX.ATMS.Web.props",
+      "PackagePath": "buildTransitive\\VisionX.ATMS.Web.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
