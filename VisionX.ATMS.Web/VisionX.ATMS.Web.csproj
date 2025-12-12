@@ -20,4 +20,10 @@
     <ProjectReference Include="..\VisionX.Interface.Repositories\VisionX.Interface.Repositories.csproj" />
   </ItemGroup>
 
+<ItemGroup>
+  <None Include="Config.xml">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
+
 </Project>
