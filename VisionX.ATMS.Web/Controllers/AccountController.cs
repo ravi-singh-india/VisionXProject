@@ -33,7 +33,7 @@ namespace VisionX.ATMS.Web.Controllers
                 }
                 else
                 {
-                   DataSet _ds = _IAccount.LoginAuthentication(model.Username,model.Password);
+                   //DataSet _ds = _IAccount.LoginAuthentication(model.Username,model.Password);
                 }
                 ViewBag.Error = "Invalid credentials";
             }

@@ -9,9 +9,9 @@
       "VisionX.ATMS.Web/1.0.0": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "6.1.3",
-          "VisionX.BusinessAccessLayer.Repositories": "1.0.0",
           "VisionX.DataAccessLayer.Repositories": "1.0.0",
-          "VisionX.Interface.Repositories": "1.0.0"
+          "VisionX.BusinessAccessLayer.Repositories": "1.0.0.0",
+          "VisionX.Interface.Repositories": "1.0.0.0"
         },
         "runtime": {
           "VisionX.ATMS.Web.dll": {}
@@ -402,11 +402,6 @@
           }
         }
       },
-      "VisionX.BusinessAccessLayer.Repositories/1.0.0": {
-        "runtime": {
-          "VisionX.BusinessAccessLayer.Repositories.dll": {}
-        }
-      },
       "VisionX.DataAccessLayer.Repositories/1.0.0": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "6.1.3"
@@ -415,12 +410,20 @@
           "VisionX.DataAccessLayer.Repositories.dll": {}
         }
       },
-      "VisionX.Interface.Repositories/1.0.0": {
-        "dependencies": {
-          "Microsoft.Data.SqlClient": "6.1.3"
-        },
+      "VisionX.BusinessAccessLayer.Repositories/1.0.0.0": {
         "runtime": {
-          "VisionX.Interface.Repositories.dll": {}
+          "VisionX.BusinessAccessLayer.Repositories.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "VisionX.Interface.Repositories/1.0.0.0": {
+        "runtime": {
+          "VisionX.Interface.Repositories.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "VisionX.BusinessEntities.Repositories/1.0.0.0": {
@@ -663,18 +666,18 @@
       "path": "system.text.json/8.0.5",
       "hashPath": "system.text.json.8.0.5.nupkg.sha512"
     },
-    "VisionX.BusinessAccessLayer.Repositories/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "VisionX.DataAccessLayer.Repositories/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "VisionX.Interface.Repositories/1.0.0": {
-      "type": "project",
+    "VisionX.BusinessAccessLayer.Repositories/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VisionX.Interface.Repositories/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

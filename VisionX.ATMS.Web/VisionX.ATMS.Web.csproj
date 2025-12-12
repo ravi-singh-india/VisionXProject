@@ -12,15 +12,22 @@
   </ItemGroup>
 
  <ItemGroup>
-    <ProjectReference Include="..\VisionX.BusinessAccessLayer.Repositories\VisionX.BusinessAccessLayer.Repositories.csproj" />
     <ProjectReference Include="..\VisionX.DataAccessLayer.Repositories\VisionX.DataAccessLayer.Repositories.csproj" />
-    <ProjectReference Include="..\VisionX.Interface.Repositories\VisionX.Interface.Repositories.csproj" />
   </ItemGroup>
 
 <ItemGroup>
   <None Include="Config.xml">
     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
   </None>
+</ItemGroup>
+
+<ItemGroup>
+  <Reference Include="VisionX.BusinessAccessLayer.Repositories">
+    <HintPath>..\VisionX.BusinessAccessLayer.Repositories\bin\Debug\net8.0\VisionX.BusinessAccessLayer.Repositories.dll</HintPath>
+  </Reference>
+  <Reference Include="VisionX.Interface.Repositories">
+    <HintPath>..\VisionX.Interface.Repositories\bin\Debug\net8.0\VisionX.Interface.Repositories.dll</HintPath>
+  </Reference>
 </ItemGroup>
 
 </Project>
